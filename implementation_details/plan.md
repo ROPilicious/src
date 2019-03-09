@@ -1,7 +1,5 @@
 ## ROP Compiler
 
-Date: 10th March 2019, Sunday
-
 1. The tool has 2 inputs and 1 output. 
 
     * Inputs: 
