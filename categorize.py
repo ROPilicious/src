@@ -33,11 +33,6 @@ def getLNGadgets(GadgetList, n) :
     
     return nGadgetsList
 
-
-# This routine generates a list of lists. 
-
-# 
-
 # Takes in a list of 2 strings and returns it.
 def getStrippedOperands(operands) : 
 
@@ -240,3 +235,49 @@ def queryGadgets(GadgetList, category, targetReg):
         x = x + 1
     
     return ReturnList
+
+# Returns a list of int gadgets if it is found.
+# If not found, it returns an empty list
+def checkIfIntPresent(GadgetList) : 
+
+    specialList = GadgetList[SPECIAL_INST]
+    intList = list()
+
+    present = 0
+
+    x = 0
+    while x < len(specialList) : 
+       
+        gadget = specialList[0]
+        inst = gadget[0]
+        if inst.mnemonic == "int" and inst.op_str == "0x80": 
+            intList.append(gadget)
+        
+        x = x + 1
+    
+    return intList
+
+
+# Returns a list of syscall gadgets if it is found.
+# If not found, it returns an empty list
+def checkIfSyscallPresent(GadgetList) : 
+
+    specialList = GadgetList[SPECIAL_INST]
+    syscallList = list()
+
+    present = 0
+
+    x = 0
+    while x < len(specialList) : 
+       
+        gadget = specialList[0]
+        inst = gadget[0]
+        if inst.mnemonic == "syscall": 
+            syscallList.append(gadget)
+        
+        x = x + 1
+    
+    return syscallList
+            
+    
+    
