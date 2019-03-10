@@ -1,5 +1,5 @@
 from capstone import *
-import pefile
+
 
 from argparse import ArgumentParser
 from elftools.elf.elffile import ELFFile
@@ -68,6 +68,15 @@ with open(vulnExecutable, 'rb') as fd:
         print("Unable to disassemble executable")
         exit(1)
     # for i in instructions:
-    #     print("0x%x:\t%s\t%s\t%s" %(i.address, i.mnemonic, i.op_str,i.bytes))
+    #     print("0x%x:\t%s\t%s" %(i.address, i.mnemonic,i.bytes))
     print("Looking for c3s")
     GetAllGadgets(instructions, code.data(), EntryAddress, gadgetLength)
+
+
+for i in range(len(allGadgets)):
+    gadget = allGadgets[i]
+    start_addr = gadget[0].address
+    print(str(hex(start_addr))+": " ,end = "")
+    for insn in gadget:
+        print("%s %s; " % (insn.mnemonic,insn.op_str), end = " ")
+    print()
