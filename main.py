@@ -69,8 +69,16 @@ if __name__ == "__main__":
         if x not in TwoInstGadgets: 
             TwoInstGadgets.append(x)
 
-    general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
+    # print_pretty.print_pretty(TwoInstGadgets)
 
-    # A tuple is returned by chain.execveROPChain()
-    # It also creates a file named execvePythonPayload which has output like ROPgadget
-    payload = chain.execveROPChain(general.ALLGADGETS, vulnExecutable)
+
+    UniqueGadgetsList = categorize.categorize(TwoInstGadgets)
+
+    for l in UniqueGadgetsList : 
+        print_pretty.print_pretty(l)
+
+    
+
+    # # A tuple is returned by chain.execveROPChain()
+    # # It also creates a file named execvePythonPayload which has output like ROPgadget
+    # payload = chain.execveROPChain(general.ALLGADGETS, vulnExecutable)

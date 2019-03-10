@@ -20,7 +20,7 @@ def getLNGadgets(GadgetList, n) :
             continue
         
         # If gadget length is 2, just append.
-        if len(gadget) == 2 : 
+        elif len(gadget) == 2 : 
             nGadgetsList.append(gadget)
         
         # If gadget length is > 2, get only 2 instructions and append.
@@ -204,22 +204,41 @@ def categorize(TwoInstGadgets):
     # At this point, ALLGADGETS has duplicate gadgets also. 
     
     # This will remove all duplicate gadgets
-    # ALLGADGETS = getSetOfGadgets(ALLGADGETS)
+    UniqueGadgetsList = getSetOfGadgets(ALLGADGETS)
 
-
-    return ALLGADGETS
+    return UniqueGadgetsList
 
 # This routine removes all repeating gadgets. 
 # Example: 
     # Suppose there is "xor rax, rax; ret" at 0x1234, 0x2345, 0x3456
     # This keeps only one instance and removes all others
 
-def getSetOfGadgets(GadgetList) : 
+def getSetOfGadgets(ListofLists) : 
 
-    ALLGADGETS = [[] for x in range(TOTAL_CATEGORIES)]
+    # This function should be fixed first.
 
-    return 
+    # x = 0
+    # while x < len(ListofLists) : 
 
+    #     y = 0
+    #     while y < len(ListofLists[x]) : 
+
+    #         gadget = ListofLists[x][y]
+    #         # ALLGADGETS[x].append(gadget)
+    #         z = 0
+    #         for z in ListofLists[x][y] : 
+
+    #             if (gadget == z) or (gadget[0].address == z[0].address) or ((gadget[0].mnemonic == z[0].mnemonic) and (gadget[0].op_str == z[0].op_str)) :
+    #                 ListofLists[x].remove(z)
+
+    #             z = z + 1
+
+    #         y = y + 1
+
+    #     x = x + 1    
+
+    return ListofLists
+ 
 
 
 # From the categorized gadgets, this routine will return a list of gadgets belonging to the queried category and containing target register.

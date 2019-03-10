@@ -137,14 +137,16 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
     print("Inside changeRegValue")
 
     RegArithList = categorize.queryGadgets(GadgetList, general.ARITHMETICG, Reg)
+    # print_pretty.print_pretty(RegArithList)
 
     # A variable 
     const = 0
-    x = 0
-    while x < len(RegArithList) : 
+    X = 0
+    while X < len(RegArithList) : 
 
-        gadget = RegArithList[x]
+        gadget = RegArithList[X]
         inst = gadget[0]
+        print("Inst = ", inst.mnemonic)
 
         if inst.mnemonic == "inc" : 
             
@@ -191,14 +193,16 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
             return 1
         
         if inst.mnemonic == "add" : 
+            
+            print("Found add")
+            operands = inst.op_str.split(',')
+            
+            
+            operands = categorize.getStrippedOperands(operands)
+            print("operands = ", operands)
 
-            operands = inst.op_str.split(';')
-            
-            if len(operands) == 2: 
-                operands = categorize.getStrippedOperands(operands)
-            
-                if operands[1].isnumeric() : 
-                    const = int(operands[1])
+            if operands[1].isnumeric() : 
+                const = int(operands[1])
 
             if const == 1 and FinalValue > CurrentValue : 
 
@@ -217,7 +221,7 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
                     fd.write("\n\t")
 
                     counter = counter + 1
-
+                
                 return 1
 
             if const > 1 and FinalValue > CurrentValue :
@@ -250,6 +254,9 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
                     print("Unable to find gadgets which can change rax's value")
                     print("Exiting...")
                     sys.exit()
+                
+                else : 
+                    return 1
 
             if const == -1 and FinalValue < CurrentValue: 
                 
@@ -300,13 +307,16 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
                     print("Unable to find gadgets which can change rax's value")
                     print("Exiting...")
                     sys.exit()
+                
+                else : 
+                    return 1
             
         # TODO: Do the same for sub instruction
         # Take care of recursive calls properly.
 
         # main while loop
         # Keep it going!
-        x = x + 1
+        X = X + 1
 
 
     return ("qwwe", "123")
