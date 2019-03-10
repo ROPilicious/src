@@ -10,7 +10,7 @@ import get_gadgets
 import categorize
 import chain
 import print_pretty
-
+import ourROP
 
 
 if __name__ == "__main__": 
@@ -59,8 +59,9 @@ if __name__ == "__main__":
     print("Gadgets that were found:")
     print_pretty.print_pretty(get_gadgets.allGadgets)    
     print(len(get_gadgets.SpecialInstructions))
+    
     # For now, get all gadgets with just 1 Instruction in it(excluding ret).
-    Temp = categorize.getLNGadgets(get_text.allGadgets, 2)
+    Temp = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
 
     TwoInstGadgets = list()
 
@@ -68,9 +69,11 @@ if __name__ == "__main__":
         if x not in TwoInstGadgets: 
             TwoInstGadgets.append(x)
 
-    
-    chain.execveROPChain(TwoInstGadgets, vulnExecutable)
-    print("chain got executed!")
+    ourROP.ALLGADGETS = categorize.categorize(TwoInstGadgets)
+
+    raxList = categorize.queryGadgets(ourROP.ALLGADGETS, ourROP.LOADCONSTG, "eax")
+
+    print_pretty.print_pretty(raxList)
 
 
 
