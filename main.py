@@ -73,5 +73,4 @@ if __name__ == "__main__":
 
     # A tuple is returned by chain.execveROPChain()
     # It also creates a file named execvePythonPayload which has output like ROPgadget
-    (execveChain, payload) = chain.execveROPChain(general.ALLGADGETS, vulnExecutable)
-    
+    payload = chain.execveROPChain(general.ALLGADGETS, vulnExecutable)

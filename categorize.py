@@ -118,7 +118,8 @@ def categorize(TwoInstGadgets):
             operands = inst.op_str.split(',')
             operands = getStrippedOperands(operands)
 
-            if (operands[0] in REGISTERS) and ((operands[1] in REGISTERS) or (operands[1].isnumeric())) : 
+            # Original condition: operands[0] in REGISTERS) and ((operands[1] in REGISTERS) or (operands[1].isnumeric())
+            if (operands[0] in REGISTERS) and  (operands[1].isnumeric()) : 
                 
                 ALLGADGETS[ARITHMETICG].append(gadget)
             
@@ -196,13 +197,29 @@ def categorize(TwoInstGadgets):
             print("Found a gadget who has not been categorized")
             print("Need help in adding these!", end = '\n\n')
 
-        
-
-
         # Keep the loop going!
         x = x + 1
+
+
+    # At this point, ALLGADGETS has duplicate gadgets also. 
     
+    # This will remove all duplicate gadgets
+    # ALLGADGETS = getSetOfGadgets(ALLGADGETS)
+
+
     return ALLGADGETS
+
+# This routine removes all repeating gadgets. 
+# Example: 
+    # Suppose there is "xor rax, rax; ret" at 0x1234, 0x2345, 0x3456
+    # This keeps only one instance and removes all others
+
+def getSetOfGadgets(GadgetList) : 
+
+    ALLGADGETS = [[] for x in range(TOTAL_CATEGORIES)]
+
+    return 
+
 
 
 # From the categorized gadgets, this routine will return a list of gadgets belonging to the queried category and containing target register.
