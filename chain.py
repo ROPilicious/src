@@ -19,3 +19,5 @@ def execveROPChain(GadgetList, vulnExecutable):
     section = elffile.get_section_by_name(data_section)
     data_section_addr = section["sh_addr"]
     data_section_size = section["sh_size"]
+
+    

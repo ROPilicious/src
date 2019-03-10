@@ -10,7 +10,7 @@ import get_gadgets
 import categorize
 import chain
 import print_pretty
-import ourROP
+import general
 
 
 if __name__ == "__main__": 
@@ -69,9 +69,9 @@ if __name__ == "__main__":
         if x not in TwoInstGadgets: 
             TwoInstGadgets.append(x)
 
-    ourROP.ALLGADGETS = categorize.categorize(TwoInstGadgets)
+    general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
 
-    raxList = categorize.queryGadgets(ourROP.ALLGADGETS, ourROP.LOADCONSTG, "eax")
+    raxList = categorize.queryGadgets(general.ALLGADGETS, general.LOADCONSTG, "eax")
 
     print_pretty.print_pretty(raxList)
 

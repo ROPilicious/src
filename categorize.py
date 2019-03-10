@@ -5,7 +5,7 @@
 
 import sys
 
-from ourROP import *
+from general import *
 
 # This routine will collect gadgets with N assembly instructions in it(excluding ret).
 # If N = 1, then the gadget will be of the form "Inst; ret"
@@ -75,7 +75,7 @@ def getStrippedOperand(operand) :
 # This categorises all the 1-instruction gadgets present. 
 # Returns a list of lists  - there are 8 main lists. 
 # Each of those 8 lists has gadgets of it's category. 
-# Refer ourROP.py to know what those categories are.
+# Refer general.py to know what those categories are.
 def categorize(TwoInstGadgets): 
 
     ALLGADGETS = [[] for x in range(TOTAL_CATEGORIES)]
