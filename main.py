@@ -71,6 +71,8 @@ if __name__ == "__main__":
 
     general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
 
+    print_pretty.print_pretty(general.ALLGADGETS[general.SPECIAL_INST])
+
     raxList = categorize.queryGadgets(general.ALLGADGETS, general.LOADCONSTG, "eax")
 
     print_pretty.print_pretty(raxList)

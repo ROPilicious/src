@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+
+# This file has all the global variables present
+
+
 # 8 basic categories used to categorise 1-instruction gadgets. 
 # Refer the categorize() routine in categorize.py to see how it is done.
 MOVREGG =           0
@@ -10,9 +14,10 @@ STOREMEMG =         4
 ARITHMETICLOADG =   5
 ARITHMETICG =       6
 JUMPG =             7
+SPECIAL_INST =      8
 
 # Total number of categories.
-TOTAL_CATEGORIES =  8
+TOTAL_CATEGORIES =  9
 
 # It is a list of lists
 # Has all gadgets in categories
@@ -28,7 +33,6 @@ REGISTERS = [   "rax", "rbx", "rcx", "rdx", "rdi", "rsi", "rbp", "rsp", "r9", "r
 
 # The final payload will be put in this variable
 FinalPayload  = bytes()
-
 
 
 

@@ -17,7 +17,11 @@ def execveROPChain(GadgetList, vulnExecutable):
     elffile = ELFFile(fd)
     data_section = ".data"
     section = elffile.get_section_by_name(data_section)
+    
+    # We need .data section's details because we have to write "/bin//sh" into it. 
     data_section_addr = section["sh_addr"]
     data_section_size = section["sh_size"]
 
     
+
+

@@ -191,10 +191,17 @@ def categorize(TwoInstGadgets):
                 print("Found an or instruction playing with memory")
                 print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
 
+        
+        # Covering the special instructions without which we would have no job to do :P
+        elif inst.mnemonic == "int" or inst.mnemonic == "syscall" : 
+            ALLGADGETS[SPECIAL_INST].append(gadget)
+
         else : 
             
             print("Found a gadget who has not been categorized")
             print("Need help in adding these!", end = '\n\n')
+
+        
 
 
         # Keep the loop going!
@@ -203,9 +210,8 @@ def categorize(TwoInstGadgets):
     return ALLGADGETS
 
 
-
 # From the categorized gadgets, this routine will return a list of gadgets belonging to the queried category and containing target register.
-def queryGadgets(ALLGADGETS, category, targetReg):
+def queryGadgets(GadgetList, category, targetReg):
 
     # Basic error handling!
     if category < 0 and category > 7 : 
@@ -213,9 +219,7 @@ def queryGadgets(ALLGADGETS, category, targetReg):
         print("Exited in categorize.queryGadgets")
         sys.exit()
 
-    print("Length of ALLGADGETS = ", len(ALLGADGETS))
-
-    L = ALLGADGETS[category]
+    L = GadgetList[category]
 
     ReturnList = list()
 
@@ -236,13 +240,3 @@ def queryGadgets(ALLGADGETS, category, targetReg):
         x = x + 1
     
     return ReturnList
-
-    
-
-
-
-
-
-
-
-
