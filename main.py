@@ -6,8 +6,9 @@ from capstone import *
 from argparse import ArgumentParser
 from elftools.elf.elffile import ELFFile
 
-import get_text
+import get_gadgets  
 import categorize
+import print_pretty
 
 
 if __name__ == "__main__": 
@@ -46,19 +47,11 @@ if __name__ == "__main__":
         # for i in instructions:
         #     print("0x%x:\t%s\t%s" %(i.address, i.mnemonic,i.bytes))
         print("Looking for c3s")
-        get_text.GetAllGadgets(instructions, code.data(), EntryAddress, gadgetLength)
+        get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, gadgetLength)
 
-
-    for i in range(len(get_text.allGadgets)):
-        gadget = get_text.allGadgets[i]
-        start_addr = gadget[0].address
-        print(str(hex(start_addr))+": " ,end = "")
-        for insn in gadget:
-            print("%s %s; " % (insn.mnemonic,insn.op_str), end = " ")
-        print()
-    
+    print_pretty.print_pretty(get_gadgets.allGadgets)    
     # For now, get all gadgets with just 1 Instruction in it(excluding ret).
-    categorize.getLNGadgets(get_text.allGadgets, 2)
+    categorize.getLNGadgets(get_gadgets.allGadgets, 2)
 
 
 
