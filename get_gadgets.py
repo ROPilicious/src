@@ -27,10 +27,10 @@ def GetGadgets(textsection,retptr,retaddress,n):
 def GetAllGadgets(instructions,code, EntryAddress,N):
     oldaddress = movingaddress = EntryAddress
     count = 0
-    print("Going upward %d bytes from each return" % N)
+    #print("Going upward %d bytes from each return" % N)
     for i in range(len(code)):
         if(int(code[i])==195 or int(code[i]) == 203 or int(code[i]) == 194 or int(code[i]) == 202):
             GetGadgets(code, i, movingaddress, N)
 
         movingaddress += 1
-    print("Successfully saved all gadgets to allGadgets! Found %d gadgets" % len(allGadgets))    
+    print("Found %d gadgets" % len(allGadgets))    
