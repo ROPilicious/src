@@ -8,7 +8,9 @@ from elftools.elf.elffile import ELFFile
 
 import get_gadgets  
 import categorize
+import chain
 import print_pretty
+
 
 
 if __name__ == "__main__": 
@@ -58,13 +60,17 @@ if __name__ == "__main__":
     print_pretty.print_pretty(get_gadgets.allGadgets)    
     print(len(get_gadgets.SpecialInstructions))
     # For now, get all gadgets with just 1 Instruction in it(excluding ret).
-    categorize.getLNGadgets(get_gadgets.allGadgets, 2)
+    Temp = categorize.getLNGadgets(get_text.allGadgets, 2)
 
+    TwoInstGadgets = list()
 
+    for x in Temp: 
+        if x not in TwoInstGadgets: 
+            TwoInstGadgets.append(x)
 
-
-
-
+    
+    chain.execveROPChain(TwoInstGadgets, vulnExecutable)
+    print("chain got executed!")
 
 
 
