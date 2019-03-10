@@ -36,7 +36,6 @@ if __name__ == "__main__":
         print("Searching all executable sections....")
         for section in elffile.iter_sections():
             curr_code = elffile.get_section_by_name(section.name)
-            # print("{1:08b}" % int(curr_code["sh_flags"]))
             if(curr_code['sh_flags'] & 4): # only if the first bit of sh_flags is set, is the section executable and we can collect gadgets from here
                 print("Searching the " + section.name + " section")
                 section_name = section.name
@@ -51,12 +50,13 @@ if __name__ == "__main__":
                     print("Unable to disassemble executable")
                     exit(1)
                 # for i in instructions:
-                #     print("0x%x:\t%s\t%s" %(i.address, i.mnemonic,i.bytes))
+                #     print("0x%x:\t%s\t%s" %(i.address, i.mnemonic,i.op_str))
                 #print("Looking for c3s")
-                get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, gadgetLength)
+                get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, get_gadgets.SpecialInstructions,gadgetLength)
 
     print("Gadgets that were found:")
     print_pretty.print_pretty(get_gadgets.allGadgets)    
+    print(len(get_gadgets.SpecialInstructions))
     # For now, get all gadgets with just 1 Instruction in it(excluding ret).
     categorize.getLNGadgets(get_gadgets.allGadgets, 2)
 
