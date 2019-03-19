@@ -57,28 +57,32 @@ if __name__ == "__main__":
                 get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, get_gadgets.SpecialInstructions,gadgetLength)
 
     print("Gadgets that were found:")
-    print_pretty.print_pretty(get_gadgets.allGadgets)    
-    print(len(get_gadgets.SpecialInstructions))
-    
-    # For now, get all gadgets with just 1 Instruction in it(excluding ret).
-    Temp = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
-
-    TwoInstGadgets = list()
-
-    for x in Temp: 
-        if x not in TwoInstGadgets: 
-            TwoInstGadgets.append(x)
-
-    # print_pretty.print_pretty(TwoInstGadgets)
-
-
-    UniqueGadgetsList = categorize.categorize(TwoInstGadgets)
-
-    for l in UniqueGadgetsList : 
-        print_pretty.print_pretty(l)
-
+    # print(get_gadgets.allGadgets[:20])
+    # print_pretty.print_pretty(get_gadgets.allGadgets)    
+    # print(len(get_gadgets.SpecialInstructions))
     
 
+
+    # # For now, get all gadgets with just 1 Instruction in it(excluding ret).
+    # Temp = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
+    Temp = categorize.categorize(get_gadgets.allGadgets)
+    # TwoInstGadgets = list()
+
+    # for x in Temp: 
+    #     if x not in TwoInstGadgets: 
+    #         TwoInstGadgets.append(x)
+
+    # # print_pretty.print_pretty(TwoInstGadgets)
+
+
+    # UniqueGadgetsList = categorize.categorize(TwoInstGadgets)
+
+    # for l in UniqueGadgetsList : 
+    #     print_pretty.print_pretty(l)
+
+    
+    # print(UniqueGadgetsList)
+    # print("TEST")
     # # A tuple is returned by chain.execveROPChain()
     # # It also creates a file named execvePythonPayload which has output like ROPgadget
-    # payload = chain.execveROPChain(general.ALLGADGETS, vulnExecutable)
+    # payload = chain.execveROPChain(TwoInstGadgets, vulnExecutable)

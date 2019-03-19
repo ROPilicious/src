@@ -2,6 +2,7 @@ from capstone import *
 
 from argparse import ArgumentParser
 from elftools.elf.elffile import ELFFile
+import sys
 
 
 allGadgets = []
@@ -21,8 +22,33 @@ def GetGadgets(textsection,retptr,retaddress,n):
         for i in md.disasm(code,addr):
             L.append(i)
         if(len(L) > 0):
+            #  print(L[0].op_str)
+            # operands = L[0].op_str.split(',')
+            # operands = getStrippedOperands(operands)
+            # try:
+            #     print(L[0].operands[0])
+            # except:
+            #     pass
+            # break
+            
             if (L[-1].mnemonic == "ret"):
-                allGadgets.append(L)
+                finalGadget = list()
+                for insn in L:
+                    InsnDict = dict()
+                    InsnDict['address'] = insn.address
+                    InsnDict['mnemonic'] = insn.mnemonic
+                    InsnDict['operands'] = list()
+                    try:
+                        for cnt in range(insn.op_count):
+                            InsnDict['operands'].append(insn.operands[cnt])
+                    except:
+                        operands = insn.op_str.split(',')
+                        InsnDict['operands'] = getStrippedOperands(operands)
+
+                    finalGadget.append(InsnDict)
+
+
+                allGadgets.append(finalGadget)
         addr=addr-1
         count=count+1
 
@@ -59,3 +85,28 @@ def specialinstructions(instructions,address):
         addr=addr+1
 
     return (syscall, interrupt)
+
+def getStrippedOperands(operands) : 
+
+    a = ""
+    b = ""
+    op_list = []
+    for op in operands:
+        op = op.lstrip()
+        op = op.rstrip()
+        op_list.append(op)
+
+    # operands[0].lstrip()
+    # operands[0].rstrip()
+    # operands[1].lstrip()
+    # operands[1].rstrip()
+
+    # for char in operands[0]:
+    #     if(char != ' '):
+    #         a+= char
+        
+    # for char in operands[1]:
+    #     if(char != ' '):
+    #         b+= char
+
+    return op_list

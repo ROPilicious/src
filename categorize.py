@@ -23,13 +23,13 @@ def getLNGadgets(GadgetList, n) :
         elif len(gadget) == 2 : 
             nGadgetsList.append(gadget)
         
-        # If gadget length is > 2, get only 2 instructions and append.
-        elif len(gadget) > 2 : 
+        # # If gadget length is > 2, get only 2 instructions and append.
+        # elif len(gadget) > 2 : 
             
-            newgadget = list()
-            newgadget.append(gadget[-2])
-            newgadget.append(gadget[-1])
-            nGadgetsList.append(newgadget)
+        #     newgadget = list()
+        #     newgadget.append(gadget[-2])
+        #     newgadget.append(gadget[-1])
+        #     nGadgetsList.append(newgadget)
     
     return nGadgetsList
 
@@ -298,6 +298,7 @@ def checkIfIntPresent(GadgetList) :
 # If not found, it returns an empty list
 def checkIfSyscallPresent(GadgetList) : 
 
+    print("LEN OF SPECIAL_INST "+ str(SPECIAL_INST))
     specialList = GadgetList[SPECIAL_INST]
     syscallList = list()
 
