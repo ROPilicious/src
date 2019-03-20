@@ -12,6 +12,8 @@ import chain
 import print_pretty
 import general
 
+import execveChain
+
 
 if __name__ == "__main__": 
 
@@ -60,4 +62,4 @@ if __name__ == "__main__":
 
     general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
 
-    chain.execveROPChain(general.ALLGADGETS, vulnExecutable)
+    execveChain.execveROPChain(general.ALLGADGETS, vulnExecutable)
