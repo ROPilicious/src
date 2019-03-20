@@ -64,10 +64,10 @@ def GetAllGadgets(instructions,code, EntryAddress, SpecialInstructions, N):
     count = 0
     SpecialInstructions = specialinstructions(code, EntryAddress)
     print(len(SpecialInstructions))
-    if(len(SpecialInstructions[0])):
-        interrupt.append(SpecialInstructions[0])    
     if(len(SpecialInstructions[1])):
-        syscall.append(SpecialInstructions[1]) 
+        interrupt.append(SpecialInstructions[1])    
+    if(len(SpecialInstructions[0])):
+        syscall.append(SpecialInstructions[0]) 
 
     for i in range(len(code)):
         if(int(code[i])==195 or int(code[i]) == 203 or int(code[i]) == 194 or int(code[i]) == 202):
