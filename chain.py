@@ -428,9 +428,10 @@ def case2(GadgetList, data_section_addr) :
 
 
     # Get syscall
-    syscallAddress = get_gadgets.syscall[0]
+    syscallAddress = get_gadgets.syscall[0][0]
     fd.write("payload += struct.pack('<Q', ")
     fd.write(hex(int(syscallAddress)))
+    fd.write(")")
     fd.write("\t\t# Address of syscall")
     fd.write("\n\t")
 

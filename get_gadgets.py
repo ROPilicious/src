@@ -63,6 +63,7 @@ def GetAllGadgets(instructions,code, EntryAddress, SpecialInstructions, N):
     oldaddress = movingaddress = EntryAddress
     count = 0
     SpecialInstructions = specialinstructions(code, EntryAddress)
+    print(len(SpecialInstructions))
     if(len(SpecialInstructions[0])):
         interrupt.append(SpecialInstructions[0])    
     if(len(SpecialInstructions[1])):

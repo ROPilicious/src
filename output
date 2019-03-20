@@ -1,22 +1,2742 @@
 Searching all executable sections....
 Searching the .init section
+2
 Found 2 gadgets
 
 Searching the .plt section
+2
 Found 2 gadgets
 
 Searching the .text section
-Found 7729 gadgets
+2
+Found 6506 gadgets
 
 Searching the __libc_freeres_fn section
-Found 7805 gadgets
+2
+Found 6563 gadgets
 
 Searching the __libc_thread_freeres_fn section
-Found 7810 gadgets
+2
+Found 6568 gadgets
 
 Searching the .fini section
-Found 7812 gadgets
+2
+Found 6570 gadgets
 
 Gadgets that were found:
-[[4196570, 4196626, 4196660, 4196715, 4196750, 4196776, 4198740, 4200325, 4200438, 4200550, 4200970, 4210237, 4210415, 4210492, 4210961, 4211005, 4252140, 4252166, 4267135, 4267270, 4267589, 4267916, 4268457, 4270477, 4271084, 4272620, 4274333, 4274514, 4305310, 4305347, 4305393, 4452373, 4452390, 4452723, 4452774, 4452799, 4452924, 4454485, 4454579, 4454658, 4454734, 4454767, 4454830, 4454863, 4454926, 4454959, 4455057, 4455090, 4455221, 4455258, 4455353, 4455548, 4455807, 4456322, 4456452, 4457205, 4457544, 4457611, 4457685, 4457717, 4457749, 4466454, 4466596, 4466662, 4466909, 4467085, 4467162, 4467209, 4467322, 4468053, 4468088, 4468117, 4468234, 4468279, 4468461, 4510151, 4510273, 4510573, 4518730, 4518906, 4518984, 4519016, 4519158, 4519380, 4519431, 4520700, 4520863, 4520924, 4521543, 4521787, 4522174, 4618549, 4631377, 4631582, 4631690, 4631742, 4631950, 4632058, 4632335, 4632373, 4632889, 4633173, 4633205, 4633221, 4633237, 4633253, 4633283, 4633368, 4633445, 4633486, 4633519, 4633624, 4633783, 4633886, 4633919, 4642388, 4657775, 4669087, 4673101, 4705949, 4711938, 4712450, 4754993, 4826325, 4830346]]
-[[4198087]]
+Length of ALLGADGETS =  9
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an xor instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an and instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an xor instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an xor instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an xor instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an xor instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an xor instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an and instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an and instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a inc / dec instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a inc / dec instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an and instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an and instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a inc / dec instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an xor instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an and instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found an or instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a inc / dec instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found an and instruction playing with memory
+As of now, not doing anything with memory-arithmetic instruction
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a inc / dec instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a inc / dec instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a add / sub / mul instruction playing with memory
+As of now, not doing anything with memory-arithmetic instructions
+
+Found a gadget who has not been categorized
+Need help in adding these!
+
+LEN OF SPECIAL_INST 8
+Entering case2
+[]
