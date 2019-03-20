@@ -58,15 +58,6 @@ if __name__ == "__main__":
 
     print("Gadgets that were found:")
     # print(get_gadgets.allGadgets)
-
-    print(get_gadgets.interrupt)
-    print("SYSCALL")
-    print(get_gadgets.syscall)
-    
-    # for gadg in get_gadgets.getMovRcx(get_gadgets.allGadgets):
-    #     print(gadg)
-    
-    # print(get_gadgets.SpecialInstructions)
     # popGadgets = get_gadgets.getPopGadgets(get_gadgets.allGadgets)
     # movQwordGadgets = get_gadgets.getMovQwordGadgets(get_gadgets.allGadgets)
 
@@ -92,6 +83,18 @@ if __name__ == "__main__":
     #         TwoInstGadgets.append(x)
 
     # # print_pretty.print_pretty(TwoInstGadgets)
+
+   
+
+    TwoInstGadgets = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
+
+    # print(TwoInstGadgets)
+
+    general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
+
+    chain.execveROPChain(general.ALLGADGETS, vulnExecutable)
+
+    # print(gadgets)
 
 
     # UniqueGadgetsList = categorize.categorize(TwoInstGadgets)
