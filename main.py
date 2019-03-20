@@ -57,16 +57,24 @@ if __name__ == "__main__":
                 get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, get_gadgets.SpecialInstructions,gadgetLength)
 
     print("Gadgets that were found:")
-    print(get_gadgets.allGadgets)
-    popGadgets = get_gadgets.getPopGadgets(get_gadgets.allGadgets)
-    movQwordGadgets = get_gadgets.getMovQwordGadgets(get_gadgets.allGadgets)
+    # print(get_gadgets.allGadgets)
 
-    # movQwordGadgets = set([x for x in movQwordGadgets])
-    print(movQwordGadgets)
+    print(get_gadgets.interrupt)
+    print(get_gadgets.syscall)
+    
+    # for gadg in get_gadgets.getMovRcx(get_gadgets.allGadgets):
+    #     print(gadg)
+    
+    # print(get_gadgets.SpecialInstructions)
+    # popGadgets = get_gadgets.getPopGadgets(get_gadgets.allGadgets)
+    # movQwordGadgets = get_gadgets.getMovQwordGadgets(get_gadgets.allGadgets)
 
-    print(chain.canWrite(movQwordGadgets, popGadgets))
-    if len(chain.canWrite(movQwordGadgets, popGadgets)):
-        print("PWNED")
+    # # movQwordGadgets = set([x for x in movQwordGadgets])
+    # print(movQwordGadgets)
+
+    # print(chain.canWrite(movQwordGadgets, popGadgets))
+    # if len(chain.canWrite(movQwordGadgets, popGadgets)):
+    #     print("PWNED")
     # print_pretty.print_pretty(get_gadgets.allGadgets)    
     # print(len(get_gadgets.SpecialInstructions))
 
