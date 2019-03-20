@@ -43,7 +43,7 @@ def GetGadgets(textsection,retptr,retaddress,n):
                 finalGadget = list()
                 for insn in L:
                     InsnDict = dict()
-                    InsnDict['address'] = insn.address
+                    InsnDict['address'] = int(insn.address) - 1
                     InsnDict['mnemonic'] = insn.mnemonic
                     InsnDict['operands'] = list()
                     

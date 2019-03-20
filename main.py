@@ -84,6 +84,15 @@ if __name__ == "__main__":
 
 
 
+    TwoInstGadgets = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
+
+    # print(TwoInstGadgets)
+
+    general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
+
+    chain.execveROPChain(general.ALLGADGETS, vulnExecutable)
+
+
 
     # # For now, get all gadgets with just 1 Instruction in it(excluding ret).
     # Temp = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
