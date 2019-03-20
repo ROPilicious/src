@@ -14,9 +14,7 @@ interrupt = []
 syscall = []
 
 def GetGadgets(textsection,retptr,retaddress,n):
-    # print("SUPPOSED RET")
-    # print(hex(int(retaddress)))
-    # print(textsection[retptr])
+   
     reti=retptr
     addr=retaddress
 
