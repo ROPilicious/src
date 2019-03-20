@@ -10,6 +10,9 @@ import general
 allGadgets = []
 SpecialInstructions = []
 
+interrupt = []
+syscall = []
+
 def GetGadgets(textsection,retptr,retaddress,n):
     reti=retptr
     addr=retaddress
@@ -59,22 +62,25 @@ def GetGadgets(textsection,retptr,retaddress,n):
 def GetAllGadgets(instructions,code, EntryAddress, SpecialInstructions, N):
     oldaddress = movingaddress = EntryAddress
     count = 0
-    print("Going upward %d bytes from each return" % N)
     SpecialInstructions = specialinstructions(code, EntryAddress)
+    if(len(SpecialInstructions[0])):
+        interrupt.append(SpecialInstructions[0])    
+    if(len(SpecialInstructions[1])):
+        syscall.append(SpecialInstructions[1]) 
+
     for i in range(len(code)):
         if(int(code[i])==195 or int(code[i]) == 203 or int(code[i]) == 194 or int(code[i]) == 202):
             GetGadgets(code, i, movingaddress, N)
 
         movingaddress += 1
-    print("Found %d gadgets" % len(allGadgets))  
-    print(SpecialInstructions)  
+    print("Found %d gadgets\n" % len(allGadgets))    
 
 def getPopGadgets(Gadgets):
     popGadgets = list()
 
     for gadget in Gadgets:
         if len(gadget) == 2:
-            if gadget[0]['mnemonic'] == 'pop':
+            if gadget[-2]['mnemonic'] == 'pop':
                 popGadgets.append(gadget)
 
     return popGadgets
@@ -86,6 +92,17 @@ def getMovQwordGadgets(Gadgets):
     for gadget in Gadgets:
         if len(gadget) >= 2:
             if gadget[-2]['mnemonic'] == 'mov' and re.search("^qword ptr \[[a-z]+\]$",gadget[-2]['operands'][0])  and gadget[-2]['operands'][1] in general.REGISTERS : 
+                if(gadget[-2:] not in movQwordGadgets): # no duplicates please
+                    movQwordGadgets.append(gadget[-2:])
+
+    return movQwordGadgets
+
+def getMovRcx(Gadgets):
+    movQwordGadgets = list()
+
+    for gadget in Gadgets:
+        if len(gadget) >= 2:
+            if gadget[-2]['mnemonic'] == 'xor' and re.search("rcx",gadget[-2]['operands'][0])  and gadget[-2]['operands'][1] in general.REGISTERS : 
                 if(gadget[-2:] not in movQwordGadgets): # no duplicates please
                     movQwordGadgets.append(gadget[-2:])
 
