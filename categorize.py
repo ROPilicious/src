@@ -284,7 +284,7 @@ def checkIfIntPresent(GadgetList) :
        
         gadget = specialList[0]
         inst = gadget[0]
-        if inst.mnemonic == "int" and inst.op_str == "0x80": 
+        if inst['mnemonic'] == "int" :# and inst['operands'] == "0x80": 
             intList.append(gadget)
         
         x = x + 1
@@ -307,7 +307,7 @@ def checkIfSyscallPresent(GadgetList) :
        
         gadget = specialList[0]
         inst = gadget[0]
-        if inst.mnemonic == "syscall": 
+        if inst['mnemonic'] == "syscall": 
             syscallList.append(gadget)
         
         x = x + 1
