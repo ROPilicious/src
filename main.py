@@ -59,12 +59,12 @@ if __name__ == "__main__":
                 #print("Looking for c3s")
                 get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, get_gadgets.SpecialInstructions,gadgetLength)
 
-    print("Gadgets that were found:")
+    # print("Gadgets that were found:")
     # print(get_gadgets.allGadgets)
 
-    print(get_gadgets.interrupt)
-    print("SYSCALL")
-    print(get_gadgets.getSyscallList())
+    # print(get_gadgets.interrupt)
+    # print("SYSCALL")
+    # print(get_gadgets.getSyscallList())
 
     # for gadg in get_gadgets.getMovRcx(get_gadgets.allGadgets):
     #     print(gadg)

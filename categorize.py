@@ -74,7 +74,7 @@ def getStrippedOperand(operand) :
 def categorize(TwoInstGadgets): 
 
     ALLGADGETS = [[] for x in range(TOTAL_CATEGORIES)]
-    print("Length of ALLGADGETS = ", len(ALLGADGETS))
+    # print("Length of ALLGADGETS = ", len(ALLGADGETS))
 
     x = 0
     while x < len(TwoInstGadgets) : 
@@ -124,8 +124,9 @@ def categorize(TwoInstGadgets):
                 ALLGADGETS[ARITHMETICG].append(gadget)
             
             else : 
-                print("Found a add / sub / mul instruction playing with memory")
-                print("As of now, not doing anything with memory-arithmetic instructions", end = '\n\n')
+                # print("Found a add / sub / mul instruction playing with memory")
+                # print("As of now, not doing anything with memory-arithmetic instructions", end = '\n\n')
+                pass
         
 
         elif inst['mnemonic'] == "inc" or inst['mnemonic'] == "dec": 
@@ -137,9 +138,9 @@ def categorize(TwoInstGadgets):
                 ALLGADGETS[ARITHMETICG].append(gadget)
             
             else: 
-                print("Found a inc / dec instruction playing with memory")
-                print("As of now, not doing anything with memory-arithmetic instructions", end = '\n\n')
-
+                # print("Found a inc / dec instruction playing with memory")
+                # print("As of now, not doing anything with memory-arithmetic instructions", end = '\n\n')
+                pass
 
         elif inst['mnemonic'] == "xor": 
             
@@ -155,8 +156,9 @@ def categorize(TwoInstGadgets):
                     ALLGADGETS[ARITHMETICG].append(gadget)
         
             else : 
-                print("Found an xor instruction playing with memory")
-                print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
+                # print("Found an xor instruction playing with memory")
+                # print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
+                pass
 
         elif inst['mnemonic'] == "and" : 
 
@@ -171,8 +173,9 @@ def categorize(TwoInstGadgets):
                 ALLGADGETS[ARITHMETICG].append(gadget)
 
             else : 
-                print("Found an and instruction playing with memory")
-                print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
+                # print("Found an and instruction playing with memory")
+                # print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
+                pass
 
 
         elif inst['mnemonic'] == "or" : 
@@ -184,8 +187,9 @@ def categorize(TwoInstGadgets):
                 ALLGADGETS[ARITHMETICG].append(gadget)
 
             else : 
-                print("Found an or instruction playing with memory")
-                print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
+                # print("Found an or instruction playing with memory")
+                # print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
+                pass
 
         
         # Covering the special instructions without which we would have no job to do :P
@@ -194,8 +198,9 @@ def categorize(TwoInstGadgets):
 
         else : 
             
-            print("Found a gadget who has not been categorized")
-            print("Need help in adding these!", end = '\n\n')
+            # print("Found a gadget who has not been categorized")
+            # print("Need help in adding these!", end = '\n\n')
+            pass
 
         # Keep the loop going!
         x = x + 1
@@ -296,7 +301,7 @@ def checkIfIntPresent(GadgetList) :
 # If not found, it returns an empty list
 def checkIfSyscallPresent(GadgetList) : 
 
-    print("LEN OF SPECIAL_INST "+ str(SPECIAL_INST))
+    # print("LEN OF SPECIAL_INST "+ str(SPECIAL_INST))
     specialList = GadgetList[SPECIAL_INST]
     syscallList = list()
 
