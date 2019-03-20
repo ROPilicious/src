@@ -5,6 +5,7 @@
 from capstone import *
 from argparse import ArgumentParser
 from elftools.elf.elffile import ELFFile
+import re
 
 import get_gadgets  
 import categorize
@@ -57,15 +58,34 @@ if __name__ == "__main__":
                 get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, get_gadgets.SpecialInstructions,gadgetLength)
 
     print("Gadgets that were found:")
-    # print(get_gadgets.allGadgets[:20])
+    print(get_gadgets.allGadgets)
+    popGadgets = list()
+    movQwordGadgets = list()
+    for gadget in get_gadgets.allGadgets:
+        if len(gadget) == 2:
+            if gadget[0]['mnemonic'] == 'pop':
+                popGadgets.append(gadget)
+    print(popGadgets)
+
+    for gadget in get_gadgets.allGadgets:
+        if len(gadget) >= 2:
+            if gadget[-2]['mnemonic'] == 'mov' and re.search("^qword ptr \[.+\]$",gadget[-2]['operands'][0])  and gadget[-2]['operands'][1] in general.REGISTERS : 
+                if(gadget[-2:] not in movQwordGadgets):
+                    movQwordGadgets.append(gadget[-2:])
+
+    print("MOVE QWORD")
+    # movQwordGadgets = set([x for x in movQwordGadgets])
+    print(movQwordGadgets)
     # print_pretty.print_pretty(get_gadgets.allGadgets)    
     # print(len(get_gadgets.SpecialInstructions))
     
+    # getLNGadgets(get_gadgets.allGadgets, 2)
+
 
 
     # # For now, get all gadgets with just 1 Instruction in it(excluding ret).
     # Temp = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
-    Temp = categorize.categorize(get_gadgets.allGadgets)
+    # Temp = categorize.categorize(get_gadgets.allGadgets)
     # TwoInstGadgets = list()
 
     # for x in Temp: 

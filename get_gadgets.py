@@ -38,9 +38,11 @@ def GetGadgets(textsection,retptr,retaddress,n):
                     InsnDict['address'] = insn.address
                     InsnDict['mnemonic'] = insn.mnemonic
                     InsnDict['operands'] = list()
+                    
                     try:
                         for cnt in range(insn.op_count):
                             InsnDict['operands'].append(insn.operands[cnt])
+                        
                     except:
                         operands = insn.op_str.split(',')
                         InsnDict['operands'] = getStrippedOperands(operands)
