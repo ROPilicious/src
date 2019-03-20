@@ -3,6 +3,8 @@ from capstone import *
 from argparse import ArgumentParser
 from elftools.elf.elffile import ELFFile
 import sys
+import re
+import general
 
 
 allGadgets = []
@@ -65,6 +67,29 @@ def GetAllGadgets(instructions,code, EntryAddress, SpecialInstructions, N):
 
         movingaddress += 1
     print("Found %d gadgets" % len(allGadgets))    
+
+def getPopGadgets(Gadgets):
+    popGadgets = list()
+
+    for gadget in Gadgets:
+        if len(gadget) == 2:
+            if gadget[0]['mnemonic'] == 'pop':
+                popGadgets.append(gadget)
+
+    return popGadgets
+
+
+def getMovQwordGadgets(Gadgets):
+    movQwordGadgets = list()
+
+    for gadget in Gadgets:
+        if len(gadget) >= 2:
+            if gadget[-2]['mnemonic'] == 'mov' and re.search("^qword ptr \[[a-z]+\]$",gadget[-2]['operands'][0])  and gadget[-2]['operands'][1] in general.REGISTERS : 
+                if(gadget[-2:] not in movQwordGadgets): # no duplicates please
+                    movQwordGadgets.append(gadget[-2:])
+
+    return movQwordGadgets
+
 
 def specialinstructions(instructions,address):
     addr=address
