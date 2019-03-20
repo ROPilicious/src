@@ -45,9 +45,12 @@ if __name__ == "__main__":
                 opcodes = code.data()
                 addr = code['sh_addr'] # section header address
                 # print('Entry Point: '+ str(hex(elffile.header['e_entry'])))
-                EntryAddress = elffile.header['e_entry']
+                EntryAddress = addr # elffile.header['e_entry']
                 md = Cs(CS_ARCH_X86, CS_MODE_64)
                 instructions = md.disasm(opcodes,addr)
+                ins = md.disasm(opcodes[0], addr)
+                # for i in ins:  
+                #         print("0x%x:\t%s\t%s" %(i.address, i.mnemonic,i.op_str))
                 if instructions == 0:
                     print("Unable to disassemble executable")
                     exit(1)
