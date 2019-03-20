@@ -22,6 +22,7 @@ TOTAL_CATEGORIES =  9
 # It is a list of lists
 # Has all gadgets in categories
 ALLGADGETS = list()
+SPECIAL_INSTRUCTIONS = list()
 
 # All possible registers
 REGISTERS = [   "rax", "rbx", "rcx", "rdx", "rdi", "rsi", "rbp", "rsp", "r9", "r10", "r11", "r12", "r13", "r14", "r15",

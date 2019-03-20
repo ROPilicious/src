@@ -83,43 +83,43 @@ def categorize(TwoInstGadgets):
         inst = gadget[0]
         
         # TODO: Add the derivatives of "mov"
-        if inst.mnemonic == "mov" : 
+        if inst['mnemonic'] == "mov" : 
             
-            operands = inst.op_str.split(',')
-            operands = getStrippedOperands(operands)
+            # operands = inst.op_str.split(',')
+            # operands = getStrippedOperands(operands)
 
-            if (operand[0] in REGISTERS) and (operands[1] in REGISTERS) : 
+            if (inst['operands'][0] in REGISTERS) and (inst['operands'][1] in REGISTERS) : 
                 ALLGADGETS[MOVREGG].append(gadget)
 
-            elif operand[0] in REGISTERS and operands[1].isnumeric() : 
+            elif inst['operands'][0] in REGISTERS and inst['operands'][1].isnumeric() : 
                 ALLGADGETS[LOADCONSTG].append(gadget)
 
-            elif operands[0] in REGISTERS and not(operands[1].isnumeric()) : 
+            elif inst['operands'][0] in REGISTERS and not(inst['operands'][1].isnumeric()) : 
                 ALLGADGETS[LOADMEMG].append(gadget)
 
-            elif operands[0] not in REGISTERS and not(operands[1].isnumeric()): 
+            elif inst['operands'][0] not in REGISTERS and not(inst['operands'][1].isnumeric()): 
                 ALLGADGETS[STOREMEMG].append(gadget)
 
         # 
-        elif inst.mnemonic == "pop" : 
+        elif inst['mnemonic'] == "pop" : 
             
-            operand = inst.op_str
-            operand = getStrippedOperand(operand)
+            # operand = inst.op_str
+            # operand = getStrippedOperand(operand)
 
-            if operand in REGISTERS : 
+            if inst['operands'][0] in REGISTERS : 
                 ALLGADGETS[LOADCONSTG].append(gadget)
             
             else : 
                 ALLGADGETS[STOREMEMG].append(gadget)
 
         # TODO: Add "div"
-        elif inst.mnemonic == "add" or inst.mnemonic == "sub" or inst.mnemonic == "mul": 
+        elif inst['mnemonic'] == "add" or inst['mnemonic'] == "sub" or inst['mnemonic'] == "mul": 
             
-            operands = inst.op_str.split(',')
-            operands = getStrippedOperands(operands)
+            # operands = inst.op_str.split(',')
+            # operands = getStrippedOperands(operands)
 
             # Original condition: operands[0] in REGISTERS) and ((operands[1] in REGISTERS) or (operands[1].isnumeric())
-            if (operands[0] in REGISTERS) and  (operands[1].isnumeric()) : 
+            if (inst['operands'][0] in REGISTERS) and  (inst['operands'][1].isnumeric()) : 
                 
                 ALLGADGETS[ARITHMETICG].append(gadget)
             
@@ -128,12 +128,12 @@ def categorize(TwoInstGadgets):
                 print("As of now, not doing anything with memory-arithmetic instructions", end = '\n\n')
         
 
-        elif inst.mnemonic == "inc" or inst.mnemonic == "dec": 
+        elif inst['mnemonic'] == "inc" or inst['mnemonic'] == "dec": 
 
-            operand = inst.op_str
-            operand = getStrippedOperand(operand)
+            # operand = inst.op_str
+            # operand = getStrippedOperand(operand)
 
-            if operand in REGISTERS : 
+            if inst['operands'] in REGISTERS : 
                 ALLGADGETS[ARITHMETICG].append(gadget)
             
             else: 
@@ -141,14 +141,14 @@ def categorize(TwoInstGadgets):
                 print("As of now, not doing anything with memory-arithmetic instructions", end = '\n\n')
 
 
-        elif inst.mnemonic == "xor": 
+        elif inst['mnemonic'] == "xor": 
             
-            operands = inst.op_str.split(',')
-            operands = getStrippedOperands(operands)
+            # operands = inst.op_str.split(',')
+            # operands = getStrippedOperands(operands)
 
-            if (operands[0] in REGISTERS) and (operands[0] in REGISTERS) :
+            if (inst['operands'][0] in REGISTERS) and (inst['operands'][0] in REGISTERS) :
 
-                if (operands[0] == operands[1]) :  
+                if (inst['operands'][0] == inst['operands'][1]) :  
                     ALLGADGETS[LOADCONSTG].append(gadget)
             
                 else : 
@@ -158,16 +158,16 @@ def categorize(TwoInstGadgets):
                 print("Found an xor instruction playing with memory")
                 print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
 
-        elif inst.mnemonic == "and" : 
+        elif inst['mnemonic'] == "and" : 
 
-            operands = inst.op_str.split(',')
-            operands = getStrippedOperands(operands)
+            # operands = inst.op_str.split(',')
+            # operands = getStrippedOperands(operands)
 
             # TODO: if int(operands[1]) == 0xffffffffffffffff : 
             #           ALLGADGETS[LOADCONSTG].append(gadget)
             # This is like loading (-1) into operands[0]
 
-            if (operands[0] in REGISTERS) and (operands[0] in REGISTERS) :
+            if (inst['operands'][0] in REGISTERS) and (inst['operands'][0] in REGISTERS) :
                 ALLGADGETS[ARITHMETICG].append(gadget)
 
             else : 
@@ -175,12 +175,12 @@ def categorize(TwoInstGadgets):
                 print("As of now, not doing anything with memory-arithmetic instruction", end = '\n\n')
 
 
-        elif inst.mnemonic == "or" : 
+        elif inst['mnemonic'] == "or" : 
 
-            operands = inst.op_str.split(',')
-            operands = getStrippedOperands(operands)
+            # operands = inst.op_str.split(',')
+            # operands = getStrippedOperands(operands)
 
-            if (operands[0] in REGISTERS) and (operands[0] in REGISTERS) :
+            if (inst['operands'][0] in REGISTERS) and (inst['operands'][0] in REGISTERS) :
                 ALLGADGETS[ARITHMETICG].append(gadget)
 
             else : 
@@ -189,7 +189,7 @@ def categorize(TwoInstGadgets):
 
         
         # Covering the special instructions without which we would have no job to do :P
-        elif inst.mnemonic == "int" or inst.mnemonic == "syscall" : 
+        elif inst['mnemonic'] == "int" or inst['mnemonic'] == "syscall" : 
             ALLGADGETS[SPECIAL_INST].append(gadget)
 
         else : 
@@ -204,40 +204,42 @@ def categorize(TwoInstGadgets):
     # At this point, ALLGADGETS has duplicate gadgets also. 
     
     # This will remove all duplicate gadgets
-    UniqueGadgetsList = getSetOfGadgets(ALLGADGETS)
+    # UniqueGadgetsList = getSetOfGadgets(ALLGADGETS)
 
-    return UniqueGadgetsList
+    # return UniqueGadgetsList
+    return ALLGADGETS
+
 
 # This routine removes all repeating gadgets. 
 # Example: 
     # Suppose there is "xor rax, rax; ret" at 0x1234, 0x2345, 0x3456
     # This keeps only one instance and removes all others
 
-def getSetOfGadgets(ListofLists) : 
+# def getSetOfGadgets(ListofLists) : 
 
-    # This function should be fixed first.
+#     # This function should be fixed first.
 
-    # x = 0
-    # while x < len(ListofLists) : 
+#     # x = 0
+#     # while x < len(ListofLists) : 
 
-    #     y = 0
-    #     while y < len(ListofLists[x]) : 
+#     #     y = 0
+#     #     while y < len(ListofLists[x]) : 
 
-    #         gadget = ListofLists[x][y]
-    #         # ALLGADGETS[x].append(gadget)
-    #         z = 0
-    #         for z in ListofLists[x][y] : 
+#     #         gadget = ListofLists[x][y]
+#     #         # ALLGADGETS[x].append(gadget)
+#     #         z = 0
+#     #         for z in ListofLists[x][y] : 
 
-    #             if (gadget == z) or (gadget[0].address == z[0].address) or ((gadget[0].mnemonic == z[0].mnemonic) and (gadget[0].op_str == z[0].op_str)) :
-    #                 ListofLists[x].remove(z)
+#     #             if (gadget == z) or (gadget[0].address == z[0].address) or ((gadget[0].mnemonic == z[0].mnemonic) and (gadget[0].op_str == z[0].op_str)) :
+#     #                 ListofLists[x].remove(z)
 
-    #             z = z + 1
+#     #             z = z + 1
 
-    #         y = y + 1
+#     #         y = y + 1
 
-    #     x = x + 1    
+#     #     x = x + 1    
 
-    return ListofLists
+#     return ListofLists
  
 
 
@@ -260,11 +262,7 @@ def queryGadgets(GadgetList, category, targetReg):
         gadget = L[x]
         inst = gadget[0]
 
-        operands = inst.op_str.split(',')
-        if len(operands) == 2: 
-            operands = getStrippedOperands(operands)
-
-        if operands[0] == targetReg : 
+        if targetReg in inst['operands'] : 
             ReturnList.append(gadget)
         
         # Keep the loop going!
