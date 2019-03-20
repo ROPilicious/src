@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
     print(get_gadgets.interrupt)
     print("SYSCALL")
-    print(get_gadgets.syscall[0][0])
+    print(get_gadgets.getSyscallList())
 
     # for gadg in get_gadgets.getMovRcx(get_gadgets.allGadgets):
     #     print(gadg)

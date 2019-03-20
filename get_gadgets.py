@@ -110,7 +110,10 @@ def getMovRcx(Gadgets):
     return movQwordGadgets
 
 def getSyscallList():
-    return syscall[0]
+    if(len(syscall)):
+        return syscall[0]
+    else:
+        return list()
 
 def specialinstructions(instructions,address):
     addr=address
