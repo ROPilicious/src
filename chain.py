@@ -66,8 +66,24 @@ def execveROPChain(GadgetList, vulnExecutable):
     print("If this is getting printed, it means there are no special instructions found. So, you know what this means!")
 
 
-    
-
+def canWrite(movQwordGadgets, popGadgets):
+    for gadget in movQwordGadgets:
+        ops = gadget[-2]['operands']
+        op1 = ops[0][-4:-1]
+        op2 = ops[1]
+        f1 = 0
+        f2 = 0
+        for popGadg in popGadgets:
+            if popGadg[0]['operands'][0] == op1:
+                f1 =1
+                break
+        for popGadg in popGadgets:
+            if popGadg[0]['operands'][0] == op2:
+                f2 =1
+                break
+        if(f1 and f2):
+            return [op1,op2]
+    return list()
 # If int 0x80 is present.
 def case1(GadgetList) : 
 
