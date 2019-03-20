@@ -73,16 +73,20 @@ def canWrite(movQwordGadgets, popGadgets):
         op2 = ops[1]
         f1 = 0
         f2 = 0
+        pop1 = None
+        pop2 = None
         for popGadg in popGadgets:
             if popGadg[0]['operands'][0] == op1:
                 f1 =1
+                pop1 = popGadg
                 break
         for popGadg in popGadgets:
             if popGadg[0]['operands'][0] == op2:
                 f2 =1
+                pop2 = popGadg
                 break
         if(f1 and f2):
-            return [op1,op2]
+            return [gadget, pop1, pop2] # returns [ mov qword ptr [rega], reb, pop rega, pop regb ] 
     return list()
 # If int 0x80 is present.
 def case1(GadgetList) : 
