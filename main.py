@@ -64,4 +64,6 @@ if __name__ == "__main__":
     general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
 
     # execveChain.execveROPChain(general.ALLGADGETS, vulnExecutable)
+
+    # As of now, mprotect system call is failing for some reason. Will figure it out.
     mprotectChain.mprotectROPChain(general.ALLGADGETS, vulnExecutable)
