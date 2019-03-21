@@ -26,15 +26,17 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    if(args.filename == None):
+        print("Use the --flag or -f flag to enter the vulnerable executable!")
+        exit(1)
+
+    if(args.length == None):
+        print("Use the --length or -l flag to enter the max number of bytes to traverse above c3!")
+        exit(10)
+
     vulnExecutable = str(args.filename)
 
     gadgetLength = int(args.length)
-
-    if(vulnExecutable== None):
-        print("Use the --flag or -f flag to enter the vulnerable executable!")
-
-    if(gadgetLength == None):
-        print("Use the --length or -l flag to enter the max number of bytes to traverse above c3!")
 
     with open(vulnExecutable, 'rb') as fd:
         elffile = ELFFile(fd)
