@@ -3,7 +3,7 @@
 void func() {
 
 	char buffer[100];
-	read(0, buffer, 1000);
+	gets(buffer);
 }
 
 int main() {
