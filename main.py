@@ -24,7 +24,7 @@ if __name__ == "__main__":
     parser.add_argument("-l", "--length", dest="length",
                         help="Max number of bytes to traverse above c3", metavar="NUM")
 
-    parser.add_argument("-e", "--exploitType", dest="exploitType")
+    parser.add_argument("-e", "--exploitType", dest="exploitType", metavar="EXPLOITTYPE")
 
     args = parser.parse_args()
 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     if(args.exploitType == None): 
         print("Use the --exploitType flag to enter the type of exploit you need. ")
         print("There are 2 types of exploit as of now: ")
-        print("1. 'execve' : Standard execve('/bin/sh', 0, 0) ROP shellcode")
+        print("1. 'execve' : Standard execve() ROP shellcode")
         print("2. 'mprotect' : mprotect() ROP Shellcode combined with execve traditional shellcode")
         exit(1)
 
@@ -85,5 +85,7 @@ if __name__ == "__main__":
     
     # If we don't have the exploit
     else: 
-        print("These are the only 2 exploits we support as of now")
+        print("We support the following exploits: ")
+        print("1. 'execve' : Standard execve() ROP shellcode")
+        print("2. 'mprotect' : mprotect() ROP Shellcode combined with execve traditional shellcode")
         exit(1)
