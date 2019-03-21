@@ -154,7 +154,7 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) :
                     fd.write("\n\t")
 
                     counter = counter + 1
-                    print(counter)
+                    
                 return 1
             
             # Case: "add Reg, -1; ret"

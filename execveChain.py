@@ -208,7 +208,7 @@ def execveROPChain(GadgetList, vulnExecutable):
 def case2(GadgetList, data_section_addr) : 
 
     # Open the file where the payload is written in the form of a python script
-    fd = open("execveROPgen.py", "w")
+    fd = open("execveROPChain.py", "w")
     chain.writeHeader(fd)
     
     # Step-2: Writing "/bin//sh" into .data section
