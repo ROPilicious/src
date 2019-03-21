@@ -1,4 +1,7 @@
 .gdb_history
 output.txt
 __pycache__
-execveChain.py
+mprotectROPChain.py
+payload.txt
+peda-session*
+execveROPChain.py
