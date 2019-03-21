@@ -15,6 +15,7 @@ These are the exploits currently available:
 
 1. **execve**: execve() ROP Shellcode - will spawn a shell on success
 2. **mprotect**: mprotect() ROP Shellcode + execve() traditional Shellcode - will spawn a shell on success
+3. **bindshell**: bindshell ROP Shellcode - will open a socket with shell - remote access
 
 Once you run our tool with correct arguments, a **python script** with the required payload will be generated. 
 
