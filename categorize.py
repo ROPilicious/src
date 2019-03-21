@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# This has routines which process the gadgets collected in get_text.
+# This has routines which process the gadgets collected in get_gadgets
 # Only gadgets with length 2 are taken and classified into 8 categories. 
 
 import sys
@@ -206,46 +206,8 @@ def categorize(TwoInstGadgets):
         x = x + 1
 
 
-    # At this point, ALLGADGETS has duplicate gadgets also. 
-    
-    # This will remove all duplicate gadgets
-    # UniqueGadgetsList = getSetOfGadgets(ALLGADGETS)
-
-    # return UniqueGadgetsList
     return ALLGADGETS
 
-
-# This routine removes all repeating gadgets. 
-# Example: 
-    # Suppose there is "xor rax, rax; ret" at 0x1234, 0x2345, 0x3456
-    # This keeps only one instance and removes all others
-
-# def getSetOfGadgets(ListofLists) : 
-
-#     # This function should be fixed first.
-
-#     # x = 0
-#     # while x < len(ListofLists) : 
-
-#     #     y = 0
-#     #     while y < len(ListofLists[x]) : 
-
-#     #         gadget = ListofLists[x][y]
-#     #         # ALLGADGETS[x].append(gadget)
-#     #         z = 0
-#     #         for z in ListofLists[x][y] : 
-
-#     #             if (gadget == z) or (gadget[0].address == z[0].address) or ((gadget[0].mnemonic == z[0].mnemonic) and (gadget[0].op_str == z[0].op_str)) :
-#     #                 ListofLists[x].remove(z)
-
-#     #             z = z + 1
-
-#     #         y = y + 1
-
-#     #     x = x + 1    
-
-#     return ListofLists
- 
 
 
 # From the categorized gadgets, this routine will return a list of gadgets belonging to the queried category and containing target register.
@@ -274,6 +236,7 @@ def queryGadgets(GadgetList, category, targetReg):
         x = x + 1
     
     return ReturnList
+
 
 # Returns a list of int gadgets if it is found.
 # If not found, it returns an empty list

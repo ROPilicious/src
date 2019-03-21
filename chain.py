@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 from elftools.elf.elffile import ELFFile
 import capstone
 import struct
@@ -11,7 +9,7 @@ import categorize
 import get_gadgets
 
 
-# This routine gets gadgets which will help in writing stuff into a writable section. 
+# canWrite(): This routine gets gadgets which will help in writing stuff into a writable section. 
 # This is the 3 gadgets this routine will return
 # 
 # 1. pop Reg1; ret  -- Load address where something is to be written.
@@ -42,7 +40,7 @@ def canWrite(movQwordGadgets, popGadgets):
     return list()
 
 
-# This routine changes the value of a specified register. 
+# changeRegValue(): This routine changes the value of a specified register. 
 # Reg = Target Register
 # CurrentValue - Present value of "rax"
 # FinalValue - The value you want in "rax" (Say a system call number)
@@ -403,10 +401,12 @@ def WriteStuffIntoMemory(data, addr, fd) :
         fd.write("\t\t# Address of pop qword ptr [Reg1], Reg2; ret")
         fd.write("\n\t")
         
-        
+
+
+# This routine writes the header of the exploit python script.
 def writeHeader(fd) : 
 
-    fd.write("#!/usr/bin/env python3")
+    fd.write("#!/usr/bin/env python2")
     fd.write("\n\n")
     fd.write("import struct")
     fd.write("\n\n")
@@ -417,6 +417,7 @@ def writeHeader(fd) :
     fd.write("payload = ''")
     fd.write("\n\n\t")
 
+# This routine writes the footer of the exploit python script.
 def writeFooter(fd): 
 
     fd.write("\n\t")
