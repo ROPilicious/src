@@ -25,10 +25,11 @@ def execveROPChain(GadgetList, vulnExecutable):
     data_section_addr = section["sh_addr"]
     data_section_size = section["sh_size"]
 
-    syscallList = categorize.checkIfSyscallPresent(GadgetList)
+    syscallList1 = categorize.checkIfSyscallPresent(GadgetList)
     intList = categorize.checkIfIntPresent(GadgetList)
+    syscallList2 = get_gadgets.getSyscallList()
 
-    if len(intList) == 0 and len(syscallList) == 0: 
+    if len(intList) == 0 and len(syscallList1) == 0 and len(syscallList2) == 0: 
         print("No int 0x80, no syscall, no ROP")
         print("Exiting tool :(")
         sys.exit()
@@ -43,7 +44,7 @@ def execveROPChain(GadgetList, vulnExecutable):
         # rdx <- 0
         # syscall
     
-    if len(syscallList) > 0: 
+    if len(syscallList1) > 0: 
         case2(GadgetList, data_section_addr)
         sys.exit()
 
