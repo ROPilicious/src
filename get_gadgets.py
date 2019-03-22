@@ -44,6 +44,7 @@ def GetGadgets(textsection,retptr,retaddress,n):
                     InsnDict['address'] = int(insn.address) - 1
                     InsnDict['mnemonic'] = insn.mnemonic
                     InsnDict['operands'] = list()
+                    InsnDict['op_str'] = insn.op_str
                     
                     try:
                         for cnt in range(insn.op_count):

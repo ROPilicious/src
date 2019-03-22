@@ -26,6 +26,8 @@ if __name__ == "__main__":
 
     parser.add_argument("-e", "--exploitType", dest="exploitType", metavar="EXPLOITTYPE")
 
+    parser.add_argument("-g", "--gadgets", dest="gadgets", action='store_true')
+
     args = parser.parse_args()
 
     if(args.filename == None):
@@ -36,12 +38,14 @@ if __name__ == "__main__":
         print("Use the --length or -l flag to enter the max number of bytes to traverse above c3!")
         exit(1)
 
-    if(args.exploitType == None): 
-        print("Use the --exploitType flag to enter the type of exploit you need. ")
-        print("There are 2 types of exploit as of now: ")
-        print("1. 'execve' : Standard execve() ROP shellcode")
-        print("2. 'mprotect' : mprotect() ROP Shellcode combined with execve traditional shellcode")
-        exit(1)
+    if(args.gadgets == False):
+        if(args.exploitType == None): 
+            print("Use the --exploitType flag to enter the type of exploit you need. ")
+            print("There are 2 types of exploit as of now: ")
+            print("1. 'execve' : Standard execve() ROP shellcode")
+            print("2. 'mprotect' : mprotect() ROP Shellcode combined with execve traditional shellcode")
+            exit(1)
+
 
     vulnExecutable = str(args.filename)
 
@@ -69,6 +73,10 @@ if __name__ == "__main__":
                     exit(1)
                 
                 get_gadgets.GetAllGadgets(instructions, code.data(), EntryAddress, get_gadgets.SpecialInstructions,gadgetLength)
+
+    if args.gadgets == True:
+        print_pretty.print_pretty(get_gadgets.allGadgets)
+
 
     TwoInstGadgets = categorize.getLNGadgets(get_gadgets.allGadgets, 2)
 

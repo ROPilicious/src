@@ -6,8 +6,8 @@
 def print_pretty(L):
     for i in range(len(L)):
             gadget = L[i]
-            start_addr = gadget[0].address
+            start_addr = gadget[0]['address']
             print(str(hex(start_addr))+": " ,end = "")
             for insn in gadget:
-                print("%s %s; " % (insn.mnemonic,insn.op_str), end = " ")
+                print("%s %s; " % (insn['mnemonic'],insn['op_str']), end = " ")
             print()
