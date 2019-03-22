@@ -14,6 +14,7 @@ import general
 
 import execveChain
 import mprotectChain
+import bindshellChain
 
 
 if __name__ == "__main__": 
@@ -44,6 +45,7 @@ if __name__ == "__main__":
             print("There are 2 types of exploit as of now: ")
             print("1. 'execve' : Standard execve() ROP shellcode")
             print("2. 'mprotect' : mprotect() ROP Shellcode combined with execve traditional shellcode")
+            print("3. 'bindshell' : Get a bindshell using ROP Shellcode")
             exit(1)
 
 
@@ -90,10 +92,15 @@ if __name__ == "__main__":
     # mprotect() ROP Shellcode + execve() traditional Shellcode
     elif args.exploitType == "mprotect" : 
         mprotectChain.mprotectROPChain(general.ALLGADGETS, vulnExecutable)
-    
+
+    # BindShell using ROP Shellcode    
+    elif args.exploitType == "bindshell" : 
+        bindshellChain.bindshellROPChain(general.ALLGADGETS, vulnExecutable)
+
     # If we don't have the exploit
     else: 
         print("We support the following exploits: ")
         print("1. 'execve' : Standard execve() ROP shellcode")
         print("2. 'mprotect' : mprotect() ROP Shellcode combined with execve traditional shellcode")
+        print("3. 'bindshell' : Get a bindshell using ROP Shellcode")
         exit(1)

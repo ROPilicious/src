@@ -349,6 +349,11 @@ def WriteStuffIntoMemory(data, addr, fd) :
 
     movpopGadgets = canWrite(movQwordGadgets, popGadgets)
 
+    if len(movpopGadgets) == 0: 
+        print("Didn't find gadgets necessary to write stuff into memory")
+        print("ROP Chaining failed")
+        sys.exit()
+
     movGadget = movpopGadgets[0][0]
     popGadget1 = movpopGadgets[1][0]
     popGadget2 = movpopGadgets[2][0]

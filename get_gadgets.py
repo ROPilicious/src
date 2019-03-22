@@ -113,7 +113,8 @@ def getMovRcx(Gadgets):
 
 def getSyscallList():
     if(len(syscall)):
-        return syscall[0]
+        # print(syscall)
+        return syscall
     else:
         return list()
 

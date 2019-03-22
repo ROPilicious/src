@@ -196,6 +196,10 @@ def categorize(TwoInstGadgets):
         elif inst['mnemonic'] == "int" or inst['mnemonic'] == "syscall" : 
             ALLGADGETS[SPECIAL_INST].append(gadget)
 
+        # Hunting for xchg instructions - very useful!
+        elif inst['mnemonic'] == "xchg" : 
+            ALLGADGETS[XCHANGE].append(gadget)
+
         else : 
             
             # print("Found a gadget who has not been categorized")

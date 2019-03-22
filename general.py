@@ -14,10 +14,11 @@ STOREMEMG =         4
 ARITHMETICLOADG =   5
 ARITHMETICG =       6
 JUMPG =             7
-SPECIAL_INST =      8
+XCHANGE =           8
+SPECIAL_INST =      9
 
 # Total number of categories.
-TOTAL_CATEGORIES =  9
+TOTAL_CATEGORIES =  10
 
 # It is a list of lists
 # Has all gadgets in categories
