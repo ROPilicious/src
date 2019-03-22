@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     parser.add_argument("-e", "--exploitType", dest="exploitType", metavar="EXPLOITTYPE")
 
-    parser.add_argument("-g", "--gadgets", dest="gadgets", action='store_true')
+    parser.add_argument("-g", "--gadgets", dest="gadgets", help="Flag to specify that gadgets need to be displayed" ,action='store_true')
 
     args = parser.parse_args()
 
