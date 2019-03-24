@@ -182,6 +182,79 @@ def case2(GadgetList, data_section_addr) :
     print("-->Chaining successful!")
 ```
 
+
+## Compiling the  vulnerable executable to get a root shell! - Very very important for project expo!
+
+I have added the necessary code which will help us run the vulnerable executable as root - that way, we get a root shell at the end of exploitation. 
+
+The following is the modified **bof.c**. 
+```c
+    #include<stdio.h>
+
+    void func() {
+
+        char buffer[100];
+        gets(buffer);
+        printf("%s\n", buffer);
+    }
+
+    int main() {
+
+            unsigned int gid, uid;
+            gid = geteuid();
+            uid = geteuid();
+
+            setresgid(gid, gid, gid);
+            setresuid(uid, uid, uid);	
+
+        printf("Before function call\n");
+        func();
+        printf("After function call\n");
+        return 0;
+    }
+```
+
+The following part is added at the beginning of main function. 
+
+```c
+    unsigned int gid, uid;
+    gid = geteuid();
+    uid = geteuid();
+
+    setresgid(gid, gid, gid);
+    setresuid(uid, uid, uid);
+```
+
+In any other vulnerable programs you write, add the above lines **without fail**. 
+
+After adding this, execute the following commands. 
+
+```
+    $ sudo su root
+    [sudo] password for adwi:
+    # 
+    # gcc bof.c -o bof --static --fno-stack-protector
+    # chgrp <your-username> bof
+    # chmod u+s bof
+    # exit
+    $
+    $
+
+Now, you are good to go. The following is what I got. 
+```
+    $ cat payload.txt - | ./bof
+    Before function call
+
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaf@
+
+    whoami
+    root
+```s
+
+
+
+
+
 ## 3. How good is this tool?
 
 These are the features of our tool. 
