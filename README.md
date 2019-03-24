@@ -225,7 +225,7 @@ The following part is added at the beginning of main function.
     setresuid(uid, uid, uid);
 ```
 
-In any other vulnerable programs you write, add the above lines **without fail**. 
+In any other vulnerable programs you write, add the above lines **without fail**.   
 
 After adding this, execute the following commands. 
 
@@ -239,6 +239,7 @@ After adding this, execute the following commands.
     # exit
     $
     $
+```
 
 Now, you are good to go. The following is what I got. 
 ```
@@ -249,10 +250,7 @@ Now, you are good to go. The following is what I got.
 
     whoami
     root
-```s
-
-
-
+```
 
 
 ## 3. How good is this tool?
