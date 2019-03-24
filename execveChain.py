@@ -44,7 +44,7 @@ def execveROPChain(GadgetList, vulnExecutable):
         # rdx <- 0
         # syscall
     
-    if len(syscallList1) > 0: 
+    if len(syscallList1) > 0 or len(syscallList2) > 0: 
         case2(GadgetList, data_section_addr)
         sys.exit()
 
@@ -161,10 +161,14 @@ def case2(GadgetList, data_section_addr) :
 
     # Get syscall
     syscallList = categorize.checkIfSyscallPresent(GadgetList)
-    syscallGadget = syscallList[0]
+    if len(syscallList) == 0: 
+        syscallList = get_gadgets.getSyscallList()
+        syscallAddress = syscallList[0][0]
     
-    syscallDict = syscallGadget[0]
-    syscallAddress = syscallDict['address']
+    else : 
+        syscallGadget = syscallList[0]
+        syscallDict = syscallGadget[0]
+        syscallAddress = syscallDict['address']
     
     fd.write("payload += struct.pack('<Q', ")
     fd.write(hex(int(syscallAddress)))

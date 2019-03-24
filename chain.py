@@ -221,7 +221,7 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) :
                 # Suppose that does not happen, 
                 # Call changeRegValue again and attempt to chain other gadgets to get the intended FinalValue
                 if changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) == 0 : 
-                    print("Unable to find gadgets which can change rax's value")
+                    print("Unable to find gadgets which can change", Reg, "'s value")
                     print("Exiting...")
                     sys.exit()
 
@@ -265,13 +265,15 @@ def changeRegValue(GadgetList, Reg, CurrentValue, FinalValue, fd) :
                 else : 
                     return 1
 
-    return 
+    print("Unable to find gadgets to change a register's value")
+    print("Exiting...")
+    sys.exit() 
 
 
 def LoadConstIntoReg(GadgetList, Reg, Const, fd) : 
 
     RegList = categorize.queryGadgets(GadgetList, general.LOADCONSTG, Reg)
-
+   
     # Search for "pop Reg; ret"
     x = 0
     while x < len(RegList) : 
@@ -301,16 +303,19 @@ def LoadConstIntoReg(GadgetList, Reg, Const, fd) :
             fd.write(")")
             fd.write("\n\t")
             
-            break
+            return
         
         x = x + 1
     
+  
     # Search for "xor Reg, Reg; ret"
     x = 0
     while x < len(RegList) : 
-
+        
+        gadget = RegList[x]
+        inst = gadget[0]
+       
         if inst['mnemonic'] == "xor" : 
-
             # "xor Reg, Reg; ret" is found
             # Loads 0 into Reg
             # Jackpot!
@@ -326,7 +331,7 @@ def LoadConstIntoReg(GadgetList, Reg, Const, fd) :
             fd.write("\n\t")
             
             if int(Const) != 0 : 
-                if changeRegValue(GadgetList, "rax", 0, Const, fd) == 0: 
+                if changeRegValue(GadgetList, Reg, 0, Const, fd) == 0: 
                     print("Unable to find gadgets which can change rax's value")
                     print("Exiting...")
                     sys.exit()
@@ -335,6 +340,10 @@ def LoadConstIntoReg(GadgetList, Reg, Const, fd) :
                     return 1
         x = x + 1
     
+    print("Unable to find necessary gadgets to load a value into a register")
+    print("Exiting...")
+    sys.exit()
+
 
 # This routine generates payload which will write stuff into memory.
 #
