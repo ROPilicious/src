@@ -4,7 +4,10 @@ void func() {
 
 	char buffer[100];
 	gets(buffer);
+	fflush(stdin);
+
 	printf("%s\n", buffer);
+	fflush(stdout);
 }
 
 int main() {
@@ -17,8 +20,12 @@ int main() {
         setresuid(uid, uid, uid);	
 
 	printf("Before function call\n");
+	fflush(stdout);
+
 	func();
+	
 	printf("After function call\n");
+	fflush(stdout);
 	return 0;
 }
 
